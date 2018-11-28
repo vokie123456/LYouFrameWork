@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'SVProgressHUD' target in the 'SVProgressHUD' project
+//
+
+#ifdef __OBeqw7da46s__
+    #import <Foundation/Foundation.h>
+#endif
