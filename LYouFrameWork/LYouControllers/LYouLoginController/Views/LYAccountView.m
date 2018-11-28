@@ -55,6 +55,15 @@
             [accountLoginBtn setBackgroundColor:ColorWithHexRGB(0x9932CC)];
             [accountLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         }
+        [accountLoginBtn addTarget:self action:@selector(accountLoginClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+
+#pragma mark - 选择登录方式(游客/账号)
+-(void)accountLoginClick:(UIButton *)sender
+{
+    if (self.accountLoginClick) {
+        sender.tag==10 ? self.accountLoginClick(VisitorLogin) : self.accountLoginClick(AccountLogin);
     }
 }
 

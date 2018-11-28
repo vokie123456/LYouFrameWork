@@ -10,7 +10,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef enum : NSUInteger {
+    VisitorLogin,//游客登录
+    AccountLogin,//账号登录
+} AccountLoginStyle;
+
 @interface LYAccountView : UIView
+
+@property(nonatomic,copy) void (^accountLoginClick)(AccountLoginStyle style);
 
 @end
 
