@@ -24,6 +24,8 @@
 #define ColorWithHexRGB(rgbValue) ColorWithHexRGBA(rgbValue,1.0)
 /*! 全局黑字体颜色 */
 #define UIColorBlackTheme ColorWithHexRGB(0x2d2d2d)
+/*! 全局灰字体颜色 */
+#define UIColorLightTheme ColorWithHexRGB(0x747474)
 /* 平方-细体 */
 #define LYFont_Semibold(font) [UIFont fontWithName:@"PingFangSC-Semibold"size:font]
 #define LYFont_Medium(font) [UIFont fontWithName:@"PingFangSC-Medium"size:font]
@@ -32,5 +34,6 @@
 /*! 其他 */
 #define StandardUserDefaults [NSUserDefaults standardUserDefaults]
 #define DDLog(xx, ...)  NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define WeakSelf(weakSelf) __weak typeof(self) weakSelf = self
 
 #endif /* LYouMacro_h */

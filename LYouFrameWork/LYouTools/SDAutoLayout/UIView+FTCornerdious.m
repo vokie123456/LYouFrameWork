@@ -26,18 +26,11 @@
 
 -(void)setFtCornerdious:(CGFloat)cornerdious Corners:(UIRectCorner)corners {
     
-//  
-//    UIBezierPath * maskPath =[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corners cornerRadii:CGSizeMake(cornerdious, cornerdious)];
-//    
-//    
-//    CAShapeLayer *maskLayer = [CAShapeLayer layer];
-//    maskLayer.frame = self.bounds;
-//    maskLayer.path = maskPath.CGPath;
-//    
-//    self.layer.mask = maskLayer;
-    
-    
-    
+    UIBezierPath * maskPath =[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corners cornerRadii:CGSizeMake(cornerdious, cornerdious)];
+    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = self.bounds;
+    maskLayer.path = maskPath.CGPath;
+    self.layer.mask = maskLayer;
     
 }
 

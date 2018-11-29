@@ -18,6 +18,5 @@
 #import "LYouTopViewManager.h"
 #import "SVProgressHUD.h"
 #import "LYouUserDefauleManager.h"
-#import "Masonry.h"
 
 #endif /* LYouPrefixHeader_pch */

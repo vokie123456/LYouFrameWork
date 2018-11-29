@@ -29,7 +29,7 @@
 -(UIButton *)loginButton{
     if (!_loginButton) {
         _loginButton = [[UIButton alloc]init];
-        _loginButton.frame = CGRectMake(90, 100, 200, 60);
+        _loginButton.frame = CGRectMake(60, 100, 200, 60);
         [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
         [_loginButton setBackgroundColor:[UIColor blueColor]];
         _loginButton.layer.borderWidth = 1;
