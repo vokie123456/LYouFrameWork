@@ -1,7 +1,7 @@
 //
-//  LY_UserViewController.h
+//  LY_ModifyPsdController.h
 //  LYouFrameWork
-//  个人中心
+//  修改密码
 //  Created by grx on 2018/12/3.
 //  Copyright © 2018年 grx. All rights reserved.
 //
@@ -10,9 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LY_UserViewController : UIViewController
-+(instancetype)sharedUserVC;
-@property(nonatomic,strong) UIViewController *LY_ShowVC;
+@interface LY_ModifyPsdController : UIViewController
+
++(instancetype)shared;
 
 @end
 

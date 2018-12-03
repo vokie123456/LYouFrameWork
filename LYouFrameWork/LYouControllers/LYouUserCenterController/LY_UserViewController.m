@@ -9,6 +9,7 @@
 #import "LY_UserViewController.h"
 #import "LYUserCenterManager.h"
 #import "LY_BindPhoneController.h"
+#import "LY_ModifyPsdController.h"
 
 @interface LY_UserViewController ()
 
@@ -99,11 +100,16 @@ self.headImageView.sd_layout.centerXEqualToView(self.bgImageView).centerYEqualTo
     changeAccountBtn.sd_layout.leftSpaceToView(self.mainView, 60).topSpaceToView(changeTopLine, 5).rightSpaceToView(self.mainView, 60).heightIs(35);
 }
 
-#pragma amrk - 绑定手机号
+#pragma amrk - 绑定手机号/修改密码
 -(void)bindPhoneBtnClick:(UIButton *)sender{
+    /** 绑定手机号 */
     LY_BindPhoneController *bindPhone = [LY_BindPhoneController shared];
     [self.view addSubview:bindPhone.view];
     bindPhone.view.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, 0).widthIs(Main_Rotate_Width/3*2).heightIs(Main_Screen_Height);
+    /** 修改密码 */
+//    LY_ModifyPsdController *modifyPsd = [LY_ModifyPsdController shared];
+//    [self.view addSubview:modifyPsd.view];
+//    modifyPsd.view.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, 0).widthIs(Main_Rotate_Width/3*2).heightIs(Main_Screen_Height);
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

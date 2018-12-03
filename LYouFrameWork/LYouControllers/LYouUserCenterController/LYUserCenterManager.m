@@ -65,7 +65,7 @@
         CGRect temp1 = self.showUserVC.view.frame;
         CGRect temp2 = temp1;
         temp2.origin.x = -240;
-        [UIView animateWithDuration:0.7 animations:^{
+        [UIView animateWithDuration:0.5 animations:^{
             self.showUserVC.view.frame = temp2;
         } completion:^(BOOL finished) {
             [self.showUserVC.view removeFromSuperview];
@@ -86,7 +86,7 @@
         temp2.origin.x = temp2.origin.x - 240;
         self.showUserVC.view.frame = temp2;
         [topmostVC.view addSubview:self.showUserVC.view];
-        [UIView animateWithDuration:0.7 animations:^{
+        [UIView animateWithDuration:0.5 animations:^{
             self.showUserVC.view.frame = temp1;
         }];
         self.isShowUserVC = YES;
@@ -129,7 +129,7 @@
         CGRect temp1 = self.showUserVC.view.frame;
         CGRect temp2 = temp1;
         temp2.origin.x = -240;
-        [UIView animateWithDuration:0.7 animations:^{
+        [UIView animateWithDuration:0.5 animations:^{
             self.showUserVC.view.frame = temp2;
         } completion:^(BOOL finished) {
             [self.showUserVC.view removeFromSuperview];

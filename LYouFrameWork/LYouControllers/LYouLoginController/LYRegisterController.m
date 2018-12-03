@@ -29,7 +29,7 @@
     self.registView.sendSMSClick = ^(LYCountDownButton *sender){
         /** 开始倒计时 */
         sender.enabled = NO;
-        [sender startWithSecond:4.0];
+        [sender startWithSecond:60.0];
         [sender didChange:^NSString *(LYCountDownButton *countDownButton,int second) {
             [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
             [sender setBackgroundColor:[UIColor lightGrayColor]];

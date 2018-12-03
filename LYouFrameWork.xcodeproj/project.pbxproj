@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2129740821B5248D00246DCF /* LY_BindPhoneController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2129740621B5248D00246DCF /* LY_BindPhoneController.h */; };
 		2129740921B5248D00246DCF /* LY_BindPhoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2129740721B5248D00246DCF /* LY_BindPhoneController.m */; };
+		214C051C21B53D0300A58096 /* LY_ModifyPsdController.h in Headers */ = {isa = PBXBuildFile; fileRef = 214C051A21B53D0300A58096 /* LY_ModifyPsdController.h */; };
+		214C051D21B53D0300A58096 /* LY_ModifyPsdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 214C051B21B53D0300A58096 /* LY_ModifyPsdController.m */; };
 		216BE6B921AE6110007D3BD5 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 216BE6B021AE6110007D3BD5 /* SVRadialGradientLayer.m */; };
 		216BE6BA21AE6110007D3BD5 /* SVIndefiniteAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 216BE6B121AE6110007D3BD5 /* SVIndefiniteAnimatedView.h */; };
 		216BE6BB21AE6110007D3BD5 /* SVProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 216BE6B221AE6110007D3BD5 /* SVProgressHUD.h */; };
@@ -126,6 +128,8 @@
 /* Begin PBXFileReference section */
 		2129740621B5248D00246DCF /* LY_BindPhoneController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LY_BindPhoneController.h; sourceTree = "<group>"; };
 		2129740721B5248D00246DCF /* LY_BindPhoneController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LY_BindPhoneController.m; sourceTree = "<group>"; };
+		214C051A21B53D0300A58096 /* LY_ModifyPsdController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LY_ModifyPsdController.h; sourceTree = "<group>"; };
+		214C051B21B53D0300A58096 /* LY_ModifyPsdController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LY_ModifyPsdController.m; sourceTree = "<group>"; };
 		216BE6B021AE6110007D3BD5 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		216BE6B121AE6110007D3BD5 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
 		216BE6B221AE6110007D3BD5 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
@@ -291,6 +295,8 @@
 				217E779221B50BF300B7930A /* LY_UserViewController.m */,
 				2129740621B5248D00246DCF /* LY_BindPhoneController.h */,
 				2129740721B5248D00246DCF /* LY_BindPhoneController.m */,
+				214C051A21B53D0300A58096 /* LY_ModifyPsdController.h */,
+				214C051B21B53D0300A58096 /* LY_ModifyPsdController.m */,
 			);
 			path = LYouUserCenterController;
 			sourceTree = "<group>";
@@ -607,6 +613,7 @@
 				21F1BCA121AF895B008CAFA5 /* IQTitleBarButtonItem.h in Headers */,
 				217E778221B4D69000B7930A /* JoDes.h in Headers */,
 				21F1693B21AD269C00C69519 /* LYouUserDefauleManager.h in Headers */,
+				214C051C21B53D0300A58096 /* LY_ModifyPsdController.h in Headers */,
 				21F1BCBF21AFBB78008CAFA5 /* LYForgetPsdView.h in Headers */,
 				21F1BC6221AEA4DD008CAFA5 /* UIView+FTCornerdious.h in Headers */,
 				21F1BCA221AF895B008CAFA5 /* IQKeyboardManagerConstantsInternal.h in Headers */,
@@ -752,6 +759,7 @@
 				217E779021B50AC700B7930A /* LYUserCenterManager.m in Sources */,
 				21F1695D21AD2D8C00C69519 /* LYouTopViewManager.m in Sources */,
 				217E779421B50BF300B7930A /* LY_UserViewController.m in Sources */,
+				214C051D21B53D0300A58096 /* LY_ModifyPsdController.m in Sources */,
 				217E778321B4D69000B7930A /* JoDes.m in Sources */,
 				21F168E521AD149100C69519 /* LYouManager.m in Sources */,
 				21F1BC9621AF895B008CAFA5 /* IQTextView.m in Sources */,

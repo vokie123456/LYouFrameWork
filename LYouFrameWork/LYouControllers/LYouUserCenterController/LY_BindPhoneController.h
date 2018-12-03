@@ -1,7 +1,7 @@
 //
 //  LY_BindPhoneController.h
 //  LYouFrameWork
-//
+//  绑定手机号
 //  Created by grx on 2018/12/3.
 //  Copyright © 2018年 grx. All rights reserved.
 //
