@@ -65,7 +65,9 @@
 
 -(void)payButtonClick:(UIButton *)sender
 {
-    
+    [[LYouManager sharedManager] LY_PayProductName:@"001" Money:@"0.01" ProductID:@"lyouPro" OrderID:[self generateTradeNO] Result:^(int code, NSString *reason) {
+        
+    }];
 }
 
 #pragma mark - ===========退出模块==========
@@ -84,6 +86,23 @@
 -(void)loginOutButtonClick:(UIButton *)sender
 {
     
+}
+
+#pragma mark - 产生随机字符串
+- (NSString *)generateTradeNO
+{
+    static int kNumber = 15;
+    
+    NSString *sourceStr = @"0123456789ABCDEFGHIJKLMNOPQRST";
+    NSMutableString *resultStr = [[NSMutableString alloc] init];
+    srand(time(0));
+    for (int i = 0; i < kNumber; i++)
+    {
+        unsigned index = rand() % [sourceStr length];
+        NSString *oneStr = [sourceStr substringWithRange:NSMakeRange(index, 1)];
+        [resultStr appendString:oneStr];
+    }
+    return resultStr;
 }
 
 @end

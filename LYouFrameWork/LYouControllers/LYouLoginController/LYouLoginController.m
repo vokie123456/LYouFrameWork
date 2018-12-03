@@ -10,6 +10,7 @@
 #import "LYouAcountLoginController.h"
 #import "LYLoginView.h"
 #import "SDAutoLayout.h"
+#import "LYUserCenterManager.h"
 
 @interface LYouLoginController ()
 
@@ -29,6 +30,7 @@
              /** 游客登录 */
              [superView removeFromSuperview];
              self.loginBlock(1,@"123",@"333");
+             [[LYUserCenterManager instance] showFuBiao];
          }else{
              /** 账号登录 */
              [superView removeFromSuperview];

@@ -13,10 +13,12 @@
 #import "LYouNetClient.h"
 #import "SDAutoLayout.h"
 #import "LYouMD5Tool.h"
+#import "JoDes.h"
 #import "LYouMacro.h"
 #import "LYouUserMacro.h"
 #import "LYouTopViewManager.h"
 #import "SVProgressHUD.h"
 #import "LYouUserDefauleManager.h"
+#import "LYouNetWorkManager.h"
 
 #endif /* LYouPrefixHeader_pch */

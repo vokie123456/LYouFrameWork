@@ -10,6 +10,8 @@
 
 @interface LYouManager : NSObject
 typedef void(^LoginBlock)(int code,NSString *uid,NSString *token);
+typedef void(^ApplePayResultBlock)(int code,NSString *reason);
+typedef void(^LY_QuitBlock)(NSString *message);
 
 #pragma mark - 初始化LYouManager
 +(instancetype)sharedManager;
@@ -24,6 +26,30 @@ typedef void(^LoginBlock)(int code,NSString *uid,NSString *token);
 
 #pragma mark - 显示登录页面
 -(void)LY_ShowLoginView:(LoginBlock)loginBlock;
+
+/**
+ *  @from                  v1.0
+ *  @brief                 支付模块
+ *  @param name            产品名称
+ *  @param money           产品金额
+ *  @param productId       商品ID
+ *  @param orderId         订单号
+ *  0 支付失败
+ *  1 支付成功
+ *  2 用户取消
+ *  3 结果不明
+ */
+#pragma mark - 根据金额 和 产品名称支付
+- (void)LY_PayProductName:(NSString *) name
+                    Money:(NSString *) money
+                ProductID:(NSString *) productId
+                  OrderID:(NSString *) orderId
+                   Result:(ApplePayResultBlock) result;
+
+#pragma mark - 加在处理退出当前登录的地方
+-(void)LY_handleGameQuitWith:(LY_QuitBlock) LY_QuitBlock;
+
+-(void)LY_Loginout;
 
 @end
 
