@@ -15,9 +15,13 @@ typedef enum : NSUInteger {
     AccountLogin,//账号登录
 } AccountLoginStyle;
 
+typedef void(^AccountLoginClick)(UIView *superView,AccountLoginStyle style);
+
 @interface LYLoginView : UIView
 
-@property(nonatomic,copy) void (^accountLoginClick)(UIView *superView,AccountLoginStyle style);
+@property(nonatomic,strong) UIButton *accountLoginBtn;
+@property(nonatomic,copy) AccountLoginClick accountLoginClick;
+@property(nonatomic,copy) void(^test)(void);
 
 @end
 

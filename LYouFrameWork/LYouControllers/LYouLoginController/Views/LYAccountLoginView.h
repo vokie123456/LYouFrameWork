@@ -8,18 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+
+NS_ASSUME_NONNULL_BEGIN
 typedef enum : NSUInteger {
     RegistAccount,//注册账号
     VisitorLogin,//游客登录
 } AccountLoginStyle;
 
-NS_ASSUME_NONNULL_BEGIN
+typedef void(^ForgetPsdClick)(UIView *superView);
+typedef void(^RegistClick)(UIView *superView, AccountLoginStyle style);
+typedef void(^AccountLoginClick)(UIView *superView);
+
 
 @interface LYAccountLoginView : UIView
 
-@property(nonatomic,copy) void (^forgetPsdClick)(UIView *superView);
-@property(nonatomic,copy) void (^registClick)(UIView *superView, AccountLoginStyle style);
-@property(nonatomic,copy) void (^accountLoginClick)(UIView *superView);
+@property(nonatomic,copy) ForgetPsdClick forgetPsdClick;
+@property(nonatomic,copy) RegistClick registClick;
+@property(nonatomic,copy) AccountLoginClick accountLoginClick;
 
 @end
 

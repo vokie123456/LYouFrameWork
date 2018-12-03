@@ -41,20 +41,20 @@
     /**  游客登录/账号登录 */
     NSArray *titleArray = @[@"游客登录",@"账号登录"];
     for (int i=0; i<2; i++) {
-        UIButton *accountLoginBtn = [UIButton new];
-        accountLoginBtn.layer.cornerRadius = 20;
-        [accountLoginBtn setTitle:titleArray[i] forState:UIControlStateNormal];
-        accountLoginBtn.titleLabel.font = LYFont_Medium(15);
-        [accountLoginBtn setTitleColor:UIColorBlackTheme forState:UIControlStateNormal];
-        [accountLoginBtn setBackgroundColor:ColorWithHexRGB(0xB577F4)];
-        accountLoginBtn.tag = i+10;
-        [self addSubview:accountLoginBtn];
-        accountLoginBtn.sd_layout.leftSpaceToView(self, 25).rightSpaceToView(self, 25).topSpaceToView(headImageView,40+i*60).heightIs(40);
-        if (accountLoginBtn.tag==11) {
-            [accountLoginBtn setBackgroundColor:ColorWithHexRGB(0x9932CC)];
-            [accountLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        self.accountLoginBtn = [UIButton new];
+        self.accountLoginBtn.layer.cornerRadius = 20;
+        [self.accountLoginBtn setTitle:titleArray[i] forState:UIControlStateNormal];
+        self.accountLoginBtn.titleLabel.font = LYFont_Medium(15);
+        [self.accountLoginBtn setTitleColor:UIColorBlackTheme forState:UIControlStateNormal];
+        [self.accountLoginBtn setBackgroundColor:ColorWithHexRGB(0xB577F4)];
+        self.accountLoginBtn.tag = i+10;
+        [self addSubview:self.accountLoginBtn];
+        self.accountLoginBtn.sd_layout.leftSpaceToView(self, 25).rightSpaceToView(self, 25).topSpaceToView(headImageView,40+i*60).heightIs(40);
+        if (self.accountLoginBtn.tag==11) {
+            [self.accountLoginBtn setBackgroundColor:ColorWithHexRGB(0x9932CC)];
+            [self.accountLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         }
-        [accountLoginBtn addTarget:self action:@selector(accountLoginClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.accountLoginBtn addTarget:self action:@selector(accountLoginClick:) forControlEvents:UIControlEventTouchUpInside];
     }
 }
 
@@ -63,6 +63,9 @@
 {
     if (self.accountLoginClick) {
         sender.tag==10 ? self.accountLoginClick(self.superview,VisitorLogin) : self.accountLoginClick(self.superview,AccountLogin);
+    }
+    if (self.test) {
+        self.test();
     }
 }
 

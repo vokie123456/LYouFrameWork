@@ -33,6 +33,7 @@
     };
     /** 账号登录 */
     self.accountView.accountLoginClick = ^(UIView *superView){
+        self.loginBlock(1, @"123222222222", @"132");
         [superView removeFromSuperview];
     };
     /** 账号注册 */

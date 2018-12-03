@@ -25,8 +25,9 @@
     NSLog(@"初始化内购");
 }
 
--(void)LY_ShowLoginView{
+-(void)LY_ShowLoginView:(LoginBlock)loginBlock{
     LYouLoginController *loginVC = [[LYouLoginController alloc]init];
+    loginVC.loginBlock = loginBlock;
     loginVC.view.frame = CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height);
     UIViewController *TTop = [LYouTopViewManager topViewController];
     [TTop.view addSubview:loginVC.view];

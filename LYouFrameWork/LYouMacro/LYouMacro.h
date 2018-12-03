@@ -32,8 +32,8 @@
 #define LYFont_Regular(font) [UIFont fontWithName:@"PingFangSC-Regular"size:font]
 
 /*! 其他 */
+#define WeakSelf(weakSelf) __weak typeof(self) weakSelf = self
 #define StandardUserDefaults [NSUserDefaults standardUserDefaults]
 #define DDLog(xx, ...)  NSLog(@"%s(%d): " xx, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
-#define WeakSelf(weakSelf) __weak typeof(self) weakSelf = self
 
 #endif /* LYouMacro_h */

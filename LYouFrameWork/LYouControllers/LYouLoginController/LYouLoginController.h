@@ -11,6 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LYouLoginController : UIViewController
+typedef void(^LoginBlock)(int code,NSString *uid,NSString *token);
+
+@property (nonatomic, copy) LoginBlock loginBlock;
+@property(nonatomic,strong) UIButton *accountLoginBtn;
 
 @end
 

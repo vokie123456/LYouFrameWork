@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface LYouManager : NSObject
+typedef void(^LoginBlock)(int code,NSString *uid,NSString *token);
 
 #pragma mark - 初始化LYouManager
 +(instancetype)sharedManager;
@@ -22,7 +23,7 @@
 -(void)LY_initWithAppkey:(NSString *)appkey;
 
 #pragma mark - 显示登录页面
--(void)LY_ShowLoginView;
+-(void)LY_ShowLoginView:(LoginBlock)loginBlock;
 
 @end
 
