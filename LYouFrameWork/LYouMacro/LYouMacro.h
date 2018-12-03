@@ -26,6 +26,8 @@
 #define UIColorBlackTheme ColorWithHexRGB(0x2d2d2d)
 /*! 全局灰字体颜色 */
 #define UIColorLightTheme ColorWithHexRGB(0x747474)
+/*! 全局深灰色 */
+#define UIColorDarkLightTheme ColorWithHexRGB(0x9B9B9B)
 /* 平方-细体 */
 #define LYFont_Semibold(font) [UIFont fontWithName:@"PingFangSC-Semibold"size:font]
 #define LYFont_Medium(font) [UIFont fontWithName:@"PingFangSC-Medium"size:font]

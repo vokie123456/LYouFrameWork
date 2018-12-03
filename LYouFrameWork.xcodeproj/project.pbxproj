@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2129740821B5248D00246DCF /* LY_BindPhoneController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2129740621B5248D00246DCF /* LY_BindPhoneController.h */; };
+		2129740921B5248D00246DCF /* LY_BindPhoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2129740721B5248D00246DCF /* LY_BindPhoneController.m */; };
 		216BE6B921AE6110007D3BD5 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 216BE6B021AE6110007D3BD5 /* SVRadialGradientLayer.m */; };
 		216BE6BA21AE6110007D3BD5 /* SVIndefiniteAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 216BE6B121AE6110007D3BD5 /* SVIndefiniteAnimatedView.h */; };
 		216BE6BB21AE6110007D3BD5 /* SVProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 216BE6B221AE6110007D3BD5 /* SVProgressHUD.h */; };
@@ -122,6 +124,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2129740621B5248D00246DCF /* LY_BindPhoneController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LY_BindPhoneController.h; sourceTree = "<group>"; };
+		2129740721B5248D00246DCF /* LY_BindPhoneController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LY_BindPhoneController.m; sourceTree = "<group>"; };
 		216BE6B021AE6110007D3BD5 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		216BE6B121AE6110007D3BD5 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
 		216BE6B221AE6110007D3BD5 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
@@ -285,6 +289,8 @@
 				217E778E21B50AC700B7930A /* LYUserCenterManager.m */,
 				217E779121B50BF300B7930A /* LY_UserViewController.h */,
 				217E779221B50BF300B7930A /* LY_UserViewController.m */,
+				2129740621B5248D00246DCF /* LY_BindPhoneController.h */,
+				2129740721B5248D00246DCF /* LY_BindPhoneController.m */,
 			);
 			path = LYouUserCenterController;
 			sourceTree = "<group>";
@@ -586,6 +592,7 @@
 				21F1695621AD2C4800C69519 /* LYouLoginController.h in Headers */,
 				21F168F921AD200200C69519 /* UITableView+SDAutoTableViewCellHeight.h in Headers */,
 				21F1BCA021AF895B008CAFA5 /* IQBarButtonItem.h in Headers */,
+				2129740821B5248D00246DCF /* LY_BindPhoneController.h in Headers */,
 				21F1BC9F21AF895B008CAFA5 /* IQToolbar.h in Headers */,
 				21F1695C21AD2D8C00C69519 /* LYouTopViewManager.h in Headers */,
 				21F1BC2321AE84F2008CAFA5 /* LYLoginView.h in Headers */,
@@ -740,6 +747,7 @@
 				21F1BC6721AF81C2008CAFA5 /* LYouAcountLoginController.m in Sources */,
 				21F1BCAC21AF895B008CAFA5 /* IQUIScrollView+Additions.m in Sources */,
 				217E777B21B4C73400B7930A /* LYouOtherPayController.m in Sources */,
+				2129740921B5248D00246DCF /* LY_BindPhoneController.m in Sources */,
 				216BE6B921AE6110007D3BD5 /* SVRadialGradientLayer.m in Sources */,
 				217E779021B50AC700B7930A /* LYUserCenterManager.m in Sources */,
 				21F1695D21AD2D8C00C69519 /* LYouTopViewManager.m in Sources */,
