@@ -11,6 +11,7 @@
 #import "LYouOtherPayController.h"
 #import "LYouAppPayController.h"
 #import "LY_UserViewController.h"
+#import "LY_OtherPayViewController.h"
 
 @implementation LYouManager
 
@@ -27,17 +28,24 @@
 -(void)LY_initWithAppkey:(NSString *)appkey withBanid:(NSString *)banid{
     NSLog(@"初始化内购");
     [[LYouAppPayController shared]initInPay];
-    [[LYouNetWorkManager instance]initWithAppkey:appkey SuccessBlock:^(NSDictionary *dict) {
-        /** 保存AppKey */
-        [LYouUserDefauleManager setAppkey:appkey];
-        /** 保存Banid */
-        [LYouUserDefauleManager setBanid:banid];
-        /** 是否初始化成功 */
-        [LYouUserDefauleManager setInitSuccess:YES];
-        
-    } FailureBock:^(NSString *errorMessage) {
-        
-    }];
+    /** 保存AppKey */
+    [LYouUserDefauleManager setAppkey:appkey];
+    /** 保存Banid */
+    [LYouUserDefauleManager setBanid:banid];
+    /** 是否初始化成功 */
+    [LYouUserDefauleManager setInitSuccess:YES];
+//    [[LYouNetWorkManager instance]initWithAppkey:appkey SuccessBlock:^(NSDictionary *dict) {
+//        /** 保存AppKey */
+//        [LYouUserDefauleManager setAppkey:appkey];
+//        /** 保存Banid */
+//        [LYouUserDefauleManager setBanid:banid];
+//
+//        /** 是否初始化成功 */
+//        [LYouUserDefauleManager setInitSuccess:YES];
+//
+//    } FailureBock:^(NSString *errorMessage) {
+//
+//    }];
 }
 
 -(void)LY_ShowLoginView:(LoginBlock)loginBlock{
@@ -53,26 +61,37 @@
                 ProductID:(NSString *) productId
                   OrderID:(NSString *) orderId
                    Result:(ApplePayResultBlock) result{
-    if ([LYouNetWorkManager instance].onoff != nil && [[LYouNetWorkManager instance].onoff isEqualToString:@"1"]) {
-        /** 第三方支付 */
-        LYouOtherPayController *otherPayVC = [[LYouOtherPayController alloc]init];
-        otherPayVC.name = [NSString stringWithFormat:@"%@",name];
-        otherPayVC.money = money;
-        otherPayVC.orderId = orderId;
-        otherPayVC.TT_AppleResultBlock = result;
-        UIViewController *TTop = [LYouTopViewManager topViewController];
-        otherPayVC.view.frame = CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height);
-        [TTop.view addSubview:otherPayVC.view];
-        
-    }else{
-        /** 内购 */
-        [LYouAppPayController shared].money = money;
-        [LYouAppPayController shared].LYAppPayResultBlock = result;
-        [LYouAppPayController shared].orderId = orderId;
-        [[LYouAppPayController shared] buy:productId];
-        [LYouUserDefauleManager setLastInPayId:orderId];
-        [LYouUserDefauleManager setLastInPayMoney:money];
-    }
+    /** 第三方支付 */
+    LY_OtherPayViewController *Apple1VC = [LY_OtherPayViewController shared];
+    
+    Apple1VC.name = name;
+    Apple1VC.money = money;
+    Apple1VC.orderId =orderId;
+    Apple1VC.ly_AppleResultBlock = result;
+    UIViewController *TTop = [LYouTopViewManager topViewController];
+    Apple1VC.view.frame = CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height);
+    
+    [TTop.view addSubview:Apple1VC.view];
+//    if ([LYouNetWorkManager instance].onoff != nil && [[LYouNetWorkManager instance].onoff isEqualToString:@"1"]) {
+//        /** 第三方支付 */
+//        HXH_Apple1ViewController *otherPayVC = [HXH_Apple1ViewController shared];
+//        otherPayVC.name = [NSString stringWithFormat:@"%@",name];
+//        otherPayVC.money = money;
+//        otherPayVC.orderId = orderId;
+//        otherPayVC.ly_AppleResultBlock = result;
+//        UIViewController *TTop = [LYouTopViewManager topViewController];
+//        otherPayVC.view.frame = CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height);
+//        [TTop.view addSubview:otherPayVC.view];
+//
+//    }else{
+//        /** 内购 */
+//        [LYouAppPayController shared].money = money;
+//        [LYouAppPayController shared].LYAppPayResultBlock = result;
+//        [LYouAppPayController shared].orderId = orderId;
+//        [[LYouAppPayController shared] buy:productId];
+//        [LYouUserDefauleManager setLastInPayId:orderId];
+//        [LYouUserDefauleManager setLastInPayMoney:money];
+//    }
 }
 
 #pragma mark - 加在处理退出当前登录的地方

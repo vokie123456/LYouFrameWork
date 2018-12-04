@@ -50,9 +50,9 @@
     NSString *urlString = @"";
     NSString *token = [LYouUserDefauleManager getToken];
     if (token.length==0||token==nil) {
-        urlString = [NSString stringWithFormat:@"%@/user/apilogin?username=%@&pass=%@",LY_URLPATH,number,pwd];
+        urlString = [NSString stringWithFormat:@"%@/user/apilogin?username=%@&pass=%@&appkey=%@&banid=%@",LY_URLPATH,number,pwd,[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid]];
     }else{
-        urlString = [NSString stringWithFormat:@"%@/user/apilogin?token=%@",LY_URLPATH,[LYouUserDefauleManager getToken]];
+        urlString = [NSString stringWithFormat:@"%@/user/apilogin?token=%@&appkey=%@&banid=%@",LY_URLPATH,[LYouUserDefauleManager getToken],[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid]];
     }
     
     [self baseRequrestWithURL:urlString WithSuccess:success WithFailure:failure];
@@ -63,6 +63,7 @@
                   failureBlock: (RequestFailureBlock) failBlock{
     NSString *token = [LYouUserDefauleManager getToken];
     NSString *urlString = [NSString stringWithFormat:@"%@/user/apilogin?token=%@&appkey=%@&banid=%@",LY_URLPATH,token,[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid]];
+    
     [self baseRequrestWithURL:urlString WithSuccess:success WithFailure:failBlock];
 }
 
@@ -70,7 +71,7 @@
 -(void)RegisterTempUserWithResult: (RequestSuccessBlock)success
                      failureBlock: (RequestFailureBlock) failBlock{
     
-    NSString *urlString = [NSString stringWithFormat:@"%@/user/apiregister?tourist=1&deviceid=%@",LY_URLPATH,[LYouUserDefauleManager getAppkey]];
+    NSString *urlString = [NSString stringWithFormat:@"%@/user/apiregister?tourist=1&deviceid=%@&appkey=%@&banid=%@",LY_URLPATH,[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid]];
     
     [self baseRequrestWithURL:urlString WithSuccess:success WithFailure:failBlock];
     

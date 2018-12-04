@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^LY_AppleResultBlock)(int code,NSString *reason);
 
 @interface LYouOtherPayController : UIViewController
-@property (nonatomic, strong) LY_AppleResultBlock TT_AppleResultBlock;
+@property (nonatomic, strong) LY_AppleResultBlock ly_AppleResultBlock;
 
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic,strong) NSString *money;

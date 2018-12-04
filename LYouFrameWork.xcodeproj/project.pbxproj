@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		2129740821B5248D00246DCF /* LY_BindPhoneController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2129740621B5248D00246DCF /* LY_BindPhoneController.h */; };
 		2129740921B5248D00246DCF /* LY_BindPhoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2129740721B5248D00246DCF /* LY_BindPhoneController.m */; };
+		21298AE221B688C3002A7198 /* LY_OtherPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21298ADF21B688C3002A7198 /* LY_OtherPayViewController.m */; };
+		21298AE321B688C3002A7198 /* LY_OtherPayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21298AE021B688C3002A7198 /* LY_OtherPayViewController.xib */; };
+		21298AE421B688C3002A7198 /* LY_OtherPayViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 21298AE121B688C3002A7198 /* LY_OtherPayViewController.h */; };
 		214C051C21B53D0300A58096 /* LY_ModifyPsdController.h in Headers */ = {isa = PBXBuildFile; fileRef = 214C051A21B53D0300A58096 /* LY_ModifyPsdController.h */; };
 		214C051D21B53D0300A58096 /* LY_ModifyPsdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 214C051B21B53D0300A58096 /* LY_ModifyPsdController.m */; };
 		216BE6B921AE6110007D3BD5 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 216BE6B021AE6110007D3BD5 /* SVRadialGradientLayer.m */; };
@@ -128,6 +131,9 @@
 /* Begin PBXFileReference section */
 		2129740621B5248D00246DCF /* LY_BindPhoneController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LY_BindPhoneController.h; sourceTree = "<group>"; };
 		2129740721B5248D00246DCF /* LY_BindPhoneController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LY_BindPhoneController.m; sourceTree = "<group>"; };
+		21298ADF21B688C3002A7198 /* LY_OtherPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LY_OtherPayViewController.m; sourceTree = "<group>"; };
+		21298AE021B688C3002A7198 /* LY_OtherPayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LY_OtherPayViewController.xib; sourceTree = "<group>"; };
+		21298AE121B688C3002A7198 /* LY_OtherPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LY_OtherPayViewController.h; sourceTree = "<group>"; };
 		214C051A21B53D0300A58096 /* LY_ModifyPsdController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LY_ModifyPsdController.h; sourceTree = "<group>"; };
 		214C051B21B53D0300A58096 /* LY_ModifyPsdController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LY_ModifyPsdController.m; sourceTree = "<group>"; };
 		216BE6B021AE6110007D3BD5 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
@@ -281,6 +287,9 @@
 				216BE6C421AE6327007D3BD5 /* LYouAppPayController.m */,
 				217E777821B4C73400B7930A /* LYouOtherPayController.h */,
 				217E777921B4C73400B7930A /* LYouOtherPayController.m */,
+				21298AE121B688C3002A7198 /* LY_OtherPayViewController.h */,
+				21298ADF21B688C3002A7198 /* LY_OtherPayViewController.m */,
+				21298AE021B688C3002A7198 /* LY_OtherPayViewController.xib */,
 			);
 			name = LYouAppPayController;
 			path = LYouFrameWork/LYouAppPayController;
@@ -592,6 +601,7 @@
 				21F1BC9A21AF895B008CAFA5 /* IQPreviousNextView.h in Headers */,
 				21F1BCA321AF895B008CAFA5 /* IQKeyboardManagerConstants.h in Headers */,
 				21F1BCB321AF895B008CAFA5 /* IQUIView+Hierarchy.h in Headers */,
+				21298AE421B688C3002A7198 /* LY_OtherPayViewController.h in Headers */,
 				21F1BCB021AF895B008CAFA5 /* IQUIScrollView+Additions.h in Headers */,
 				216BE6BA21AE6110007D3BD5 /* SVIndefiniteAnimatedView.h in Headers */,
 				217E777A21B4C73400B7930A /* LYouOtherPayController.h in Headers */,
@@ -719,6 +729,7 @@
 			files = (
 				21F1BC9521AF895B008CAFA5 /* README.md in Resources */,
 				21F1BC9421AF895B008CAFA5 /* LICENSE.md in Resources */,
+				21298AE321B688C3002A7198 /* LY_OtherPayViewController.xib in Resources */,
 				21F1BCA421AF895B008CAFA5 /* IQKeyboardManager.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -779,6 +790,7 @@
 				217E777F21B4CB0100B7930A /* LYouNetWorkManager.m in Sources */,
 				216BE6BF21AE6110007D3BD5 /* SVProgressHUD.m in Sources */,
 				21F1BC2421AE84F2008CAFA5 /* LYLoginView.m in Sources */,
+				21298AE221B688C3002A7198 /* LY_OtherPayViewController.m in Sources */,
 				21F1BC9B21AF895B008CAFA5 /* IQTitleBarButtonItem.m in Sources */,
 				21F1BCBC21AFBA03008CAFA5 /* LYFogetPswordController.m in Sources */,
 				21F1BC6321AEA4DD008CAFA5 /* UIView+FTCornerdious.m in Sources */,

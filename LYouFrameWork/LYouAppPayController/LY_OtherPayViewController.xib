@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LY_OtherPayViewController">
+            <connections>
+                <outlet property="BGView" destination="WWu-AR-nJ5" id="ukD-sT-fZ9"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WWu-AR-nJ5">
+                    <rect key="frame" x="10" y="134" width="300" height="308"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="WWu-AR-nJ5" secondAttribute="height" multiplier="1:1" constant="-8" id="Aot-iS-gio"/>
+                        <constraint firstAttribute="width" constant="300" id="pLh-8v-yKo"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="WWu-AR-nJ5" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Ipc-mI-TNY"/>
+                <constraint firstItem="WWu-AR-nJ5" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="4" id="amD-nh-bEH"/>
+            </constraints>
+            <point key="canvasLocation" x="60" y="72.887323943661968"/>
+        </view>
+    </objects>
+</document>

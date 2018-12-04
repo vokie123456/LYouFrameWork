@@ -93,8 +93,8 @@
         return @"";
     }
 }
-+(void)setBanid:(NSString *)appkey{
-    [[NSUserDefaults standardUserDefaults] setObject:appkey forKey:@"LY_Banid"];
++(void)setBanid:(NSString *)banid{
+    [[NSUserDefaults standardUserDefaults] setObject:banid forKey:@"LY_Banid"];
 }
 
 

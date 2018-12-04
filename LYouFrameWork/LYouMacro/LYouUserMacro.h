@@ -9,6 +9,7 @@
 #ifndef LYouUserMacro_h
 #define LYouUserMacro_h
 //图片文件目录
+#define IS_SDK 1  //0为demo 1为SDK
 #define  LY_ImagePath  @"images.bundle/"
 //服务器请求地址
 #define LY_URLPAYPATH @"http://pay-sdk.pk2game.com"

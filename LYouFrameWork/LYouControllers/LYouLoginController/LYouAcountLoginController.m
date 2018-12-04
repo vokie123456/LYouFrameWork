@@ -72,7 +72,35 @@
             [TTop.view addSubview:registVC.view];
         }else{
             /** 游客登录 */
-            [superView removeFromSuperview];
+            NSString *tempName =  [LYouUserDefauleManager getTempName];
+            if ([tempName length] > 1) {
+                //游客登录
+                [[LYouNetWorkManager instance] TempUserLoginWithResult:^(NSDictionary *dict) {
+                    NSLog(@"======%@",[LYouUserDefauleManager getTempName]);
+                    [superView removeFromSuperview];
+                    [[LYUserCenterManager instance] showFuBiao];
+                    [LYouUserDefauleManager setTempName:dict[@"data"][@"username"]];
+                    [LYouUserDefauleManager setToken:dict[@"data"][@"token"]];
+                    [LYouUserDefauleManager setIsTempUser:@"1"];
+                    [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+                    self.loginBlock(2,@"",dict[@"data"][@"token"]);
+                } failureBlock:^(NSString *errorMessage) {
+                    [SVProgressHUD showErrorWithStatus:errorMessage];
+                }];
+            }else{
+                //注册游客
+                [[LYouNetWorkManager instance] RegisterTempUserWithResult:^(NSDictionary *dict) {
+                    NSLog(@"=====%@",dict[@"data"][@"token"]);
+                    [LYouUserDefauleManager setTempName:dict[@"data"][@"username"]];
+                    [LYouUserDefauleManager setToken:dict[@"data"][@"token"]];
+                    [LYouUserDefauleManager setIsTempUser:@"1"];
+                    [superView removeFromSuperview];
+                    [[LYUserCenterManager instance] showFuBiao];
+                    self.loginBlock(2,@"",dict[@"data"][@"token"]);
+                } failureBlock:^(NSString *errorMessage) {
+                    [SVProgressHUD showErrorWithStatus:errorMessage];
+                }];
+            }
         }
     };
 }
