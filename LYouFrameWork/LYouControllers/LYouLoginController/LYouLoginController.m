@@ -20,6 +20,15 @@
 
 @implementation LYouLoginController
 
++(instancetype)sharedVC{
+    static LYouLoginController *instence = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instence = [[LYouLoginController alloc] init];
+    });
+    return instence;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.loginView];
@@ -27,14 +36,38 @@
     WeakSelf(weakSelf); self.loginView.sd_layout.centerYEqualToView(self.view).centerXEqualToView(self.view).widthIs(Main_Rotate_Width-80).heightIs(260);
      self.loginView.accountLoginClick = ^(UIView *superView,AccountLoginStyle style){
          if (style==VisitorLogin) {
-             /** 游客登录 */
-             [superView removeFromSuperview];
-             self.loginBlock(1,@"123",@"333");
-             [[LYUserCenterManager instance] showFuBiao];
+             NSString *tempName =  [LYouUserDefauleManager getTempName];
+             if ([tempName length] > 1) {
+                 //游客登录
+                 [[LYouNetWorkManager instance] TempUserLoginWithResult:^(NSDictionary *dict) {
+                     [superView removeFromSuperview];
+                     [[LYUserCenterManager instance] showFuBiao];
+                     [LYouUserDefauleManager setTempName:dict[@"data"][@"username"]];
+                     [LYouUserDefauleManager setToken:dict[@"data"][@"token"]];
+                     [LYouUserDefauleManager setIsTempUser:@"1"];
+                     [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+                     self.loginBlock(2,@"",dict[@"data"][@"token"]);
+                 } failureBlock:^(NSString *errorMessage) {
+                     [SVProgressHUD showErrorWithStatus:errorMessage];
+                 }];
+             }else{
+                 //注册游客
+                 [[LYouNetWorkManager instance] RegisterTempUserWithResult:^(NSDictionary *dict) {
+                     NSLog(@"=====%@",dict[@"data"][@"token"]);
+                     [LYouUserDefauleManager setTempName:dict[@"data"][@"username"]];
+                     [LYouUserDefauleManager setToken:dict[@"data"][@"token"]];
+                     [LYouUserDefauleManager setIsTempUser:@"1"];
+                     [superView removeFromSuperview];
+                     [[LYUserCenterManager instance] showFuBiao];
+                     self.loginBlock(2,@"",dict[@"data"][@"token"]);
+                 } failureBlock:^(NSString *errorMessage) {
+                     [SVProgressHUD showErrorWithStatus:errorMessage];
+                 }];
+             }
          }else{
              /** 账号登录 */
              [superView removeFromSuperview];
-             LYouAcountLoginController *accountVC = [LYouAcountLoginController new];
+             LYouAcountLoginController *accountVC = [LYouAcountLoginController sharedVC];
              accountVC.loginBlock = self.loginBlock;
              UIViewController *TTop = [LYouTopViewManager topViewController];
              [TTop.view addSubview:accountVC.view];

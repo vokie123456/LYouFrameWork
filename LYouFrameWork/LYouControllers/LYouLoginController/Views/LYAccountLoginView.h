@@ -25,6 +25,7 @@ typedef void(^AccountLoginClick)(UIView *superView);
 @property(nonatomic,copy) ForgetPsdClick forgetPsdClick;
 @property(nonatomic,copy) RegistClick registClick;
 @property(nonatomic,copy) AccountLoginClick accountLoginClick;
+@property(nonatomic,strong) UITextField *accountFiled;
 
 @end
 

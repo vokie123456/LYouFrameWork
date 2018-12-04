@@ -20,5 +20,6 @@
 #import "SVProgressHUD.h"
 #import "LYouUserDefauleManager.h"
 #import "LYouNetWorkManager.h"
+#import "LYUserCenterManager.h"
 
 #endif /* LYouPrefixHeader_pch */

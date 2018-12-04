@@ -50,18 +50,18 @@
         [self addSubview:accountBgView];
         accountBgView.sd_layout.leftSpaceToView(self, 25).rightSpaceToView(self, 25).topSpaceToView(headImageView,15+i*50).heightIs(40);
         /** 输入框 */
-        UITextField *accountFiled = [UITextField new];
-        accountFiled.placeholder = titleArray[i];
-        [accountFiled setValue:ColorWithHexRGB(0x85A9F5) forKeyPath:@"_placeholderLabel.textColor"];
-        accountFiled.textAlignment = NSTextAlignmentCenter;
-        accountFiled.font = LYFont_Medium(17);
-        accountFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
-        accountFiled.textColor = UIColorBlackTheme;
-        accountFiled.tag = i+10;
-        [accountBgView addSubview:accountFiled];
-        accountFiled.sd_layout.leftSpaceToView(accountBgView, 25).rightSpaceToView(accountBgView, 25).topSpaceToView(accountBgView,0).heightIs(40);
-        if (accountFiled.tag==11) {
-            accountFiled.secureTextEntry = YES;
+        self.accountFiled = [UITextField new];
+        self.accountFiled.placeholder = titleArray[i];
+        [self.accountFiled setValue:ColorWithHexRGB(0x85A9F5) forKeyPath:@"_placeholderLabel.textColor"];
+        self.accountFiled.textAlignment = NSTextAlignmentCenter;
+        self.accountFiled.font = LYFont_Medium(17);
+        self.accountFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
+        self.accountFiled.textColor = UIColorBlackTheme;
+        self.accountFiled.tag = i+10;
+        [accountBgView addSubview:self.accountFiled];
+        self.accountFiled.sd_layout.leftSpaceToView(accountBgView, 25).rightSpaceToView(accountBgView, 25).topSpaceToView(accountBgView,0).heightIs(40);
+        if (self.accountFiled.tag==11) {
+            self.accountFiled.secureTextEntry = YES;
         }
     }
     /** 忘记密码 */
@@ -132,6 +132,10 @@
     UITextField *passfield = (UITextField *)[self viewWithTag:11];
     if (accountfield.text.length==0) {
         [SVProgressHUD showInfoWithStatus:@"账号不能为空"];
+        return;
+    }
+    if (accountfield.text.length < 11 || accountfield.text.length > 11) {
+        [SVProgressHUD showErrorWithStatus:@"账号输入错误"];
         return;
     }
     if (passfield.text.length==0) {

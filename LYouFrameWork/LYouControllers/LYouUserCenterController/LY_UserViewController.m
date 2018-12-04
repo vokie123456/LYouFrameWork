@@ -17,8 +17,8 @@
 @property(nonatomic,strong) UIImageView *bgImageView;
 @property(nonatomic,strong) UIImageView *headImageView;
 @property(nonatomic,strong) UILabel *userNameLable;    /** 用户名 */
-@property(nonatomic,strong)UILabel *bindPhoneLable;    /** 绑定手机号 */
-
+@property(nonatomic,strong) UILabel *bindPhoneLable;    /** 绑定手机号 */
+@property(nonatomic,strong) UIImageView *bindImage;
 @end
 
 @implementation LY_UserViewController
@@ -30,6 +30,28 @@
        instence = [[LY_UserViewController alloc] init];
     });
     return instence;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    if ([[LYouUserDefauleManager getIsTempUser] isEqualToString:@"1"]) {
+        self.bindImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@手机",LY_ImagePath]];
+        self.bindImage.sd_layout.widthIs(20).heightIs(25);
+        [self.bindImage updateLayout];
+        NSString *str =  [[LYouUserDefauleManager getTempName] stringByReplacingOccurrencesOfString:@"游客" withString:@""];
+        NSString *lastStr   =  [NSString stringWithFormat:@"您好, %@",str];
+        self.userNameLable.text = lastStr;
+        self.bindPhoneLable.text = @"绑定手机号";
+        return;
+    }
+    if ([LYouUserDefauleManager getUserName].length > 1) {
+        self.bindImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@密码",LY_ImagePath]];
+        self.bindImage.sd_layout.widthIs(25).heightIs(25);
+        [self.bindImage updateLayout];
+        NSString *username = [LYouUserDefauleManager getUserName];
+        NSString *lastStr   =  [NSString stringWithFormat:@"您好, %@",username];
+        self.userNameLable.text = lastStr;
+        self.bindPhoneLable.text = @"更换密码";
+    }
 }
 
 - (void)viewDidLoad {
@@ -59,7 +81,7 @@ self.headImageView.sd_layout.centerXEqualToView(self.bgImageView).centerYEqualTo
     self.userNameLable = [[UILabel alloc]init];
     self.userNameLable.font = LYFont_Medium(16);
     self.userNameLable.textColor = UIColorBlackTheme;
-    self.userNameLable.text = @"您好，59929393944";
+    self.userNameLable.text = [NSString stringWithFormat:@"您好，%@",[LYouUserDefauleManager getUserName]];
     [self.mainView addSubview:self.userNameLable];
     self.userNameLable.sd_layout.leftSpaceToView(self.mainView, 10).topSpaceToView(self.bgImageView, 10).rightSpaceToView(self.mainView, 0).autoHeightRatio(0);
     /** 绑定手机号 */
@@ -71,10 +93,10 @@ self.headImageView.sd_layout.centerXEqualToView(self.bgImageView).centerYEqualTo
     [self.mainView addSubview:bindPhoneBtn];
     [bindPhoneBtn addTarget:self action:@selector(bindPhoneBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     bindPhoneBtn.sd_layout.leftSpaceToView(self.mainView, 0).topSpaceToView(bindTopLine, 0).rightSpaceToView(self.mainView, 0).heightIs(45);
-    UIImageView *bindImage = [[UIImageView alloc]init];
-    bindImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@手机",LY_ImagePath]];
-    [bindPhoneBtn addSubview:bindImage];
-    bindImage.sd_layout.leftSpaceToView(bindPhoneBtn, 30).topSpaceToView(bindPhoneBtn, 10).widthIs(20).heightIs(25);
+    self.bindImage = [[UIImageView alloc]init];
+    self.bindImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@手机",LY_ImagePath]];
+    [bindPhoneBtn addSubview:self.bindImage];
+    self.bindImage.sd_layout.leftSpaceToView(bindPhoneBtn, 30).topSpaceToView(bindPhoneBtn, 10).widthIs(20).heightIs(25);
     self.bindPhoneLable = [[UILabel alloc]init];
     [bindPhoneBtn addSubview:self.bindPhoneLable];
     self.bindPhoneLable.textAlignment = NSTextAlignmentCenter;
@@ -98,18 +120,39 @@ self.headImageView.sd_layout.centerXEqualToView(self.bgImageView).centerYEqualTo
     changeAccountBtn.layer.cornerRadius = 5;
     [self.mainView addSubview:changeAccountBtn];
     changeAccountBtn.sd_layout.leftSpaceToView(self.mainView, 60).topSpaceToView(changeTopLine, 5).rightSpaceToView(self.mainView, 60).heightIs(35);
+    [changeAccountBtn addTarget:self action:@selector(changeAccountBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+
 }
 
 #pragma amrk - 绑定手机号/修改密码
 -(void)bindPhoneBtnClick:(UIButton *)sender{
-    /** 绑定手机号 */
-    LY_BindPhoneController *bindPhone = [LY_BindPhoneController shared];
-    [self.view addSubview:bindPhone.view];
-    bindPhone.view.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, 0).widthIs(Main_Rotate_Width/3*2).heightIs(Main_Screen_Height);
-    /** 修改密码 */
-//    LY_ModifyPsdController *modifyPsd = [LY_ModifyPsdController shared];
-//    [self.view addSubview:modifyPsd.view];
-//    modifyPsd.view.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, 0).widthIs(Main_Rotate_Width/3*2).heightIs(Main_Screen_Height);
+    if ([[LYouUserDefauleManager getIsTempUser] isEqualToString:@"1"]) {
+        /** 绑定手机号 */
+        LY_BindPhoneController *bindPhone = [LY_BindPhoneController shared];
+        [self.view addSubview:bindPhone.view];
+        bindPhone.view.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, 0).widthIs(Main_Rotate_Width/3*2).heightIs(Main_Screen_Height);
+    }else{
+        /** 修改密码 */
+        LY_ModifyPsdController *modifyPsd = [LY_ModifyPsdController shared];
+        [self.view addSubview:modifyPsd.view];
+        modifyPsd.view.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, 0).widthIs(Main_Rotate_Width/3*2).heightIs(Main_Screen_Height);
+    }
+}
+
+#pragma mark - 切换账号
+-(void)changeAccountBtnClick:(UIButton *)sender{
+    UIAlertController *alertController =  [UIAlertController alertControllerWithTitle:@"确认退出当前账号" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self.view removeFromSuperview];
+        [[LYUserCenterManager instance] hideFuBiao];
+        [[LYUserCenterManager instance] closedUserCenter];
+        [[LYUserCenterManager instance] QuitGame];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    [alertController addAction:action];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

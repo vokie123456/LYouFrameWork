@@ -61,13 +61,9 @@
 #pragma mark -- 游客登录
 -(void)TempUserLoginWithResult: (RequestSuccessBlock)success
                   failureBlock: (RequestFailureBlock) failBlock{
-    NSString *name = [LYouUserDefauleManager getTempName];
-    NSString *appid = [LYouUserDefauleManager getAppkey];
-    NSString *urlString = [NSString stringWithFormat:@"%@/user/apilogin?m=index&c=user&a=dooLogin&name=%@&appid=%@",LY_URLPATH,name,appid];
-    
+    NSString *token = [LYouUserDefauleManager getToken];
+    NSString *urlString = [NSString stringWithFormat:@"%@/user/apilogin?token=%@",LY_URLPATH,token];
     [self baseRequrestWithURL:urlString WithSuccess:success WithFailure:failBlock];
-    
-    
 }
 
 #pragma mark -- 注册游客
@@ -113,8 +109,8 @@
 }
 
 #pragma mark -- 修改密码
--(void)ChagePasswordWithPhone:(NSString *)num Password:(NSString *)pwd SuccessBlock:(RequestSuccessBlock)success FailureBock:(RequestFailureBlock)failure{
-    NSString *urlString = [NSString stringWithFormat:@"%@?m=index&c=user&a=findPassword&phone=%@&password=%@",URLPATH,num,pwd];
+-(void)ChagePasswordWithPhone:(NSString *)token Password:(NSString *)pwd SuccessBlock:(RequestSuccessBlock)success FailureBock:(RequestFailureBlock)failure{
+    NSString *urlString = [NSString stringWithFormat:@"%@/user/apieditpassword?token=%@&newpass=%@",LY_URLPATH,token,pwd];
     
     [self baseRequrestWithURL:urlString WithSuccess:success WithFailure:failure];
 }

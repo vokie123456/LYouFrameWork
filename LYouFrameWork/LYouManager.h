@@ -49,7 +49,7 @@ typedef void(^LY_QuitBlock)(NSString *message);
 #pragma mark - 加在处理退出当前登录的地方
 -(void)LY_handleGameQuitWith:(LY_QuitBlock) LY_QuitBlock;
 
--(void)LY_Loginout;
+-(void)LY_Loginout:(LY_QuitBlock) ly_QuitBlock;
 
 @end
 

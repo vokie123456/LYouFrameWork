@@ -55,6 +55,7 @@
         textFiled.font = LYFont_Medium(16);
         textFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
         textFiled.tag = i+10;
+        textFiled.secureTextEntry = YES;
         textFiled.placeholder = placeArray[i];
         [textFiled setValue:ColorWithHexRGB(0x85A9F5) forKeyPath:@"_placeholderLabel.textColor"];
         [self.modifyImage addSubview:textFiled];
@@ -80,7 +81,37 @@
 
 #pragma mark - x确认
 -(void)sureButtonClick:(UIButton *)sneder{
-    
+    UITextField *passField = (UITextField *)[self.view viewWithTag:10];
+    UITextField *repassField = (UITextField *)[self.view viewWithTag:11];
+    if (passField.text.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入新密码"];
+        return;
+    }
+    if (passField.text.length < 4) {
+        [SVProgressHUD showErrorWithStatus:@"密码不能小于3位数"];
+        return;
+    }
+    if (repassField.text.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"请输入确认密码"];
+        return;
+    }
+    if (![repassField.text isEqualToString:passField.text]) {
+        [SVProgressHUD showErrorWithStatus:@"密码不一致,请重新输入！"];
+        return;
+    }
+    NSString *username = [LYouUserDefauleManager getUserName];
+    if (username.length < 11) {
+        [SVProgressHUD showErrorWithStatus:@"请重新登录再试！"];
+        return;
+    }
+    [[LYouNetWorkManager instance] ChagePasswordWithPhone:[LYouUserDefauleManager getToken] Password:passField.text SuccessBlock:^(NSDictionary *dict) {
+        [self.view removeFromSuperview];
+        passField.text = @"";
+        repassField.text = @"";
+        [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+    } FailureBock:^(NSString *errorMessage) {
+        [SVProgressHUD showErrorWithStatus:errorMessage];
+    }];
 }
 
 #pragma mark - 返回

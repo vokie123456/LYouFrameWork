@@ -10,6 +10,7 @@
 #import "LYouLoginController.h"
 #import "LYouOtherPayController.h"
 #import "LYouAppPayController.h"
+#import "LY_UserViewController.h"
 
 @implementation LYouManager
 
@@ -25,8 +26,18 @@
 
 -(void)LY_initWithAppkey:(NSString *)appkey{
     NSLog(@"初始化内购");
+    [[LYouAppPayController shared]initInPay];
     [[LYouNetWorkManager instance]initWithAppkey:appkey SuccessBlock:^(NSDictionary *dict) {
-        [LYouNetWorkManager instance].onoff = @"1";
+        [LYouUserDefauleManager setAppkey:appkey];
+        [LYouUserDefauleManager setInitSuccess:YES];
+        [LYouUserDefauleManager setKF_qq:dict[@"kf_qq"]];
+        [LYouUserDefauleManager setKF_qqq:dict[@"kf_qqq"]];
+        [LYouUserDefauleManager setKF_phone:dict[@"kf_phone"]];
+        [LYouUserDefauleManager setKF_sitime:dict[@"kf_sltime"]];
+        
+        [LYouNetWorkManager instance].onoff = dict[@"onoff"];
+        [LYouNetWorkManager instance].ccurl = dict[@"ccurl"];
+        [LYouNetWorkManager instance].string = dict[@"string"];
     } FailureBock:^(NSString *errorMessage) {
     }];
 }
@@ -71,8 +82,17 @@
     
 }
 
--(void)LY_Loginout{
-    
+-(void)LY_Loginout:(LY_QuitBlock) ly_QuitBlock{
+    [[LYouNetWorkManager instance] LY_LoginOutGame:[LYouUserDefauleManager getToken] SuccessBlock:^(NSDictionary *dict) {
+        [LYouUserDefauleManager setToken:@""];
+        [[LY_UserViewController sharedUserVC].view removeFromSuperview];
+        [[LYUserCenterManager instance] hideFuBiao];
+        [[LYUserCenterManager instance] closedUserCenter];
+        [[LYUserCenterManager instance] QuitGame];
+        ly_QuitBlock(dict[@"message"]);
+    } FailureBock:^(NSString *errorMessage) {
+        [SVProgressHUD showErrorWithStatus:@"退出失败"];
+    }];
 }
 
 @end

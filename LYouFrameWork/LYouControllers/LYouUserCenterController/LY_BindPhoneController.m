@@ -104,28 +104,50 @@
             [SVProgressHUD showErrorWithStatus:@"请输入正确手机号"];
             return;
         }
-        /** 开始倒计时 */
-        sender.enabled = NO;
-        [sender startWithSecond:60.0];
-        [sender didChange:^NSString *(LYCountDownButton *countDownButton,int second) {
-            [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [sender setBackgroundColor:[UIColor lightGrayColor]];
-            NSString *title = [NSString stringWithFormat:@"%ds",second];
-            return title;
+        [[LYouNetWorkManager instance] getVerifyMessageWithPhone:phonefield.text withType:@"2" SuccessBlock:^(NSDictionary *dict) {
+            [SVProgressHUD showSuccessWithStatus:@"发送成功!"];
+            [self sendSuccess:sender];
+        } FailureBock:^(NSString *errorMessage) {
+            [SVProgressHUD showErrorWithStatus:errorMessage];
         }];
-        [sender didFinished:^NSString *(LYCountDownButton *countDownButton, int second) {
-            [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [sender setBackgroundColor:ColorWithHexRGB(0x5C3BFE)];
-            countDownButton.enabled = YES;
-            return @"重新获取";
-        }];
+    }];
+}
+
+-(void)sendSuccess:(LYCountDownButton *)sender{
+    sender.enabled = NO;
+    [sender startWithSecond:60.0];
+    [sender didChange:^NSString *(LYCountDownButton *countDownButton,int second) {
+        [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [sender setBackgroundColor:[UIColor lightGrayColor]];
+        NSString *title = [NSString stringWithFormat:@"%ds",second];
+        return title;
+    }];
+    [sender didFinished:^NSString *(LYCountDownButton *countDownButton, int second) {
+        [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [sender setBackgroundColor:ColorWithHexRGB(0x5C3BFE)];
+        countDownButton.enabled = YES;
+        return @"重新获取";
     }];
 }
 
 #pragma mark - 确认
 -(void)sureButtonClick:(UIButton *)sender
 {
-    
+    UITextField *phonefield = (UITextField *)[self.view viewWithTag:10];
+    UITextField *verfield = (UITextField *)[self.view viewWithTag:11];
+    UITextField *pasfield = (UITextField *)[self.view viewWithTag:12];
+    [[LYouNetWorkManager instance] AddPhoneNumberWithPhoneNum:phonefield.text Password:pasfield.text Verification:verfield.text SuccessBlock:^(NSDictionary *dict) {
+        [SVProgressHUD showSuccessWithStatus:@"绑定成功"];
+        [LYouUserDefauleManager setUserName:phonefield.text];
+        [LYouUserDefauleManager setUserPassword:pasfield.text];
+        [LYouUserDefauleManager setIsTempUser:@"0"];
+        [LYouUserDefauleManager setTempName:@""];
+        [self.view removeFromSuperview];
+        
+    } FailureBock:^(NSString *errorMessage) {
+        
+        [SVProgressHUD showErrorWithStatus:errorMessage];
+    }];
 }
 
 #pragma mark - 返回

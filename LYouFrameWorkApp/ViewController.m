@@ -85,7 +85,9 @@
 
 -(void)loginOutButtonClick:(UIButton *)sender
 {
-    
+    [[LYouManager sharedManager]LY_Loginout:^(NSString *message) {
+        NSLog(@"message=====%@",message);
+    }];
 }
 
 #pragma mark - 产生随机字符串

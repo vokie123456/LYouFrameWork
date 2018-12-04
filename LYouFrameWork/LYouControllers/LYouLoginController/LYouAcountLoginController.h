@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 typedef void(^LoginBlock)(int code,NSString *uid,NSString *token);
 
 @interface LYouAcountLoginController : UIViewController
+
++(instancetype)sharedVC;
+-(void)cheakCurrentAcount;
 @property (nonatomic, copy) LoginBlock loginBlock;
 
 @end

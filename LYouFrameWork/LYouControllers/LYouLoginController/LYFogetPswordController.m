@@ -7,6 +7,7 @@
 //
 
 #import "LYFogetPswordController.h"
+#import "LYouAcountLoginController.h"
 #import "LYForgetPsdView.h"
 
 @interface LYFogetPswordController ()
@@ -25,27 +26,50 @@
      self.forgetView.backClick = ^(UIView *superView){
          [superView removeFromSuperview];
      };
+     WeakSelf(weakSelf);
      self.forgetView.sendSMSClick = ^(LYCountDownButton *sender){
          /** 开始倒计时 */
-         sender.enabled = NO;
-         [sender startWithSecond:4.0];
-         [sender didChange:^NSString *(LYCountDownButton *countDownButton,int second) {
-             [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-             [sender setBackgroundColor:[UIColor lightGrayColor]];
-             NSString *title = [NSString stringWithFormat:@"%ds",second];
-             return title;
-         }];
-         [sender didFinished:^NSString *(LYCountDownButton *countDownButton, int second) {
-             [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-             [sender setBackgroundColor:ColorWithHexRGB(0x5C3BFE)];
-             countDownButton.enabled = YES;
-             return @"重新获取";
+         UITextField *phonefield = (UITextField *)[self.forgetView viewWithTag:10];
+         
+         [[LYouNetWorkManager instance]getVerifyMessageWithPhone:phonefield.text withType:@"3" SuccessBlock:^(NSDictionary *dict) {
+             [SVProgressHUD showSuccessWithStatus:@"发送成功!"];
+             [weakSelf sendSuccess:sender];
+         } FailureBock:^(NSString *errorMessage) {
+             [SVProgressHUD showErrorWithStatus:errorMessage];
          }];
      };
     /** 完成 */
     self.forgetView.submitPassClick = ^(UIView * _Nonnull superView) {
-        [superView removeFromSuperview];
+        UITextField *phonefield = (UITextField *)[self.forgetView viewWithTag:10];
+        UITextField *verifield = (UITextField *)[self.forgetView viewWithTag:11];
+        UITextField *pasfield = (UITextField *)[self.forgetView viewWithTag:12];
+        [[LYouNetWorkManager instance]GetBackPassWordWithPhoneNum:phonefield.text Password:pasfield.text Verification:verifield.text SuccessBlock:^(NSDictionary *dict) {
+            [SVProgressHUD showSuccessWithStatus:@"密码找回成功!"];
+            [LYouUserDefauleManager setIsTempUser:@"0"];
+            [LYouUserDefauleManager setUserPassword:pasfield.text];
+            [[LYouAcountLoginController sharedVC] cheakCurrentAcount];
+            [superView removeFromSuperview];
+        } FailureBock:^(NSString *errorMessage) {
+            [SVProgressHUD showErrorWithStatus:errorMessage];
+        }];
     };
+}
+
+-(void)sendSuccess:(LYCountDownButton *)sender{
+    sender.enabled = NO;
+    [sender startWithSecond:60.0];
+    [sender didChange:^NSString *(LYCountDownButton *countDownButton,int second) {
+        [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [sender setBackgroundColor:[UIColor lightGrayColor]];
+        NSString *title = [NSString stringWithFormat:@"%ds",second];
+        return title;
+    }];
+    [sender didFinished:^NSString *(LYCountDownButton *countDownButton, int second) {
+        [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [sender setBackgroundColor:ColorWithHexRGB(0x5C3BFE)];
+        countDownButton.enabled = YES;
+        return @"重新获取";
+    }];
 }
 
 #pragma mark - initForgetViewUI
