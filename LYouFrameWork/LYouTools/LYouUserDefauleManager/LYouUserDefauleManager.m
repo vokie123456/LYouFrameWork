@@ -10,6 +10,19 @@
 
 @implementation LYouUserDefauleManager
 
+//注册成功token
++(NSString *)getToken{
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"Token"]) {
+        return [[NSUserDefaults standardUserDefaults] stringForKey:@"Token"];
+    }else{
+        
+        return @"";
+    }
+}
++(void)setToken:(NSString *)token{
+    [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"Token"];
+}
+
 //游客名
 +(NSString *)getTempName{
     if ([[NSUserDefaults standardUserDefaults] stringForKey:TEMPNAME]) {

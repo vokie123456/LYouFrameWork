@@ -13,6 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LYouUserDefauleManager : NSObject
 
 #pragma mark  本地数据
+
+//注册成功Token
++(NSString *)getToken;
++(void)setToken:(NSString *)token;
+
 //游客名
 +(NSString *)getTempName;
 +(void)setTempName:(NSString *)tempname;
