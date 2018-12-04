@@ -131,21 +131,22 @@
     NSData *receiptData = [NSData dataWithContentsOfURL:recepitURL];
     if(!receiptData){
     }
-    NSString * orderNum = transaction.transactionIdentifier;
-    NSString * CPorderID = self.orderId;
-    NSString * Price = self.money;
-    if (CPorderID.length <1) {
-        CPorderID = [LYouUserDefauleManager getLastInPayId];
-        Price = [LYouUserDefauleManager getLastInPayMoney];
-    }
+//    NSString * orderNum = transaction.transactionIdentifier;
+//    NSString * CPorderID = self.orderId;
+//    NSString * Price = self.money;
+//    if (CPorderID.length <1) {
+//        CPorderID = [LYouUserDefauleManager getLastInPayId];
+//        Price = [LYouUserDefauleManager getLastInPayMoney];
+//    }
 
-    NSString *urlString = [NSString stringWithFormat:@"%@/index.php?m=index&c=ios&a=iapVerify",URLPATH];
+    NSString *urlString = [NSString stringWithFormat:@"%@/game/apiiospay",LY_URLPATH];
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = @"POST";
-    NSString *StrTemp = [NSString stringWithFormat:@"uid=%@&game_trade_no=%@&out_trade_no=%@&price=%@&appid=%@&key=%@",user,CPorderID,orderNum,Price,[LYouUserDefauleManager getAppkey],MD5_key];
-    NSString *sign =[LYouMD5Tool MD5ForLower32Bate:StrTemp];
-    NSString *args = [NSString stringWithFormat:@"receipt=%@&uid=%@&game_trade_no=%@&out_trade_no=%@&price=%@&appid=%@&sign=%@",[receiptData base64EncodedStringWithOptions:0],user,CPorderID,orderNum,Price,[LYouUserDefauleManager getAppkey],sign];
+//    NSString *StrTemp = [NSString stringWithFormat:@"uid=%@&game_trade_no=%@&out_trade_no=%@&price=%@&appid=%@&key=%@",user,CPorderID,orderNum,Price,[LYouUserDefauleManager getAppkey],MD5_key];
+//    NSString *sign =[LYouMD5Tool MD5ForLower32Bate:StrTemp];
+//    NSString *args = [NSString stringWithFormat:@"receipt=%@&uid=%@&game_trade_no=%@&out_trade_no=%@&price=%@&appid=%@&sign=%@",[receiptData base64EncodedStringWithOptions:0],user,CPorderID,orderNum,Price,[LYouUserDefauleManager getAppkey],sign];
+    NSString *args = [NSString stringWithFormat:@"receipt=%@&token=%@&order=%@",[receiptData base64EncodedStringWithOptions:0],[LYouUserDefauleManager getToken],self.orderId];
     request.HTTPBody = [args dataUsingEncoding:NSUTF8StringEncoding];
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *sessionDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {

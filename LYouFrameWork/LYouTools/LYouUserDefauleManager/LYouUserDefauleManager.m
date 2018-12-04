@@ -85,6 +85,18 @@
     [[NSUserDefaults standardUserDefaults] setObject:appkey forKey:@"LY_Appkey"];
 }
 
+//banid
++(NSString *)getBanid{
+    if ([[NSUserDefaults standardUserDefaults] stringForKey:@"LY_Banid"]) {
+        return [[NSUserDefaults standardUserDefaults] stringForKey:@"LY_Banid"];
+    }else{
+        return @"";
+    }
+}
++(void)setBanid:(NSString *)appkey{
+    [[NSUserDefaults standardUserDefaults] setObject:appkey forKey:@"LY_Banid"];
+}
+
 
 #pragma mark 客服
 +(NSString *)getKF_qq{

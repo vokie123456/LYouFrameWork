@@ -24,21 +24,19 @@
     return manager;
 }
 
--(void)LY_initWithAppkey:(NSString *)appkey{
+-(void)LY_initWithAppkey:(NSString *)appkey withBanid:(NSString *)banid{
     NSLog(@"初始化内购");
     [[LYouAppPayController shared]initInPay];
     [[LYouNetWorkManager instance]initWithAppkey:appkey SuccessBlock:^(NSDictionary *dict) {
+        /** 保存AppKey */
         [LYouUserDefauleManager setAppkey:appkey];
+        /** 保存Banid */
+        [LYouUserDefauleManager setBanid:banid];
+        /** 是否初始化成功 */
         [LYouUserDefauleManager setInitSuccess:YES];
-        [LYouUserDefauleManager setKF_qq:dict[@"kf_qq"]];
-        [LYouUserDefauleManager setKF_qqq:dict[@"kf_qqq"]];
-        [LYouUserDefauleManager setKF_phone:dict[@"kf_phone"]];
-        [LYouUserDefauleManager setKF_sitime:dict[@"kf_sltime"]];
         
-        [LYouNetWorkManager instance].onoff = dict[@"onoff"];
-        [LYouNetWorkManager instance].ccurl = dict[@"ccurl"];
-        [LYouNetWorkManager instance].string = dict[@"string"];
     } FailureBock:^(NSString *errorMessage) {
+        
     }];
 }
 
@@ -94,5 +92,6 @@
         [SVProgressHUD showErrorWithStatus:@"退出失败"];
     }];
 }
+
 
 @end

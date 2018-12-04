@@ -40,6 +40,7 @@
              if ([tempName length] > 1) {
                  //游客登录
                  [[LYouNetWorkManager instance] TempUserLoginWithResult:^(NSDictionary *dict) {
+                     NSLog(@"======%@",[LYouUserDefauleManager getTempName]);
                      [superView removeFromSuperview];
                      [[LYUserCenterManager instance] showFuBiao];
                      [LYouUserDefauleManager setTempName:dict[@"data"][@"username"]];
@@ -74,6 +75,8 @@
          }
      };
 }
+
+
 
 #pragma mark - initAccountViewUI
 -(LYLoginView *)loginView{

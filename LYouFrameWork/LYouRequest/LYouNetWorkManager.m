@@ -32,9 +32,9 @@
     NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
     NSLog(@"app_Version = %@, app_build = %@, idfa = %@",app_Version,app_build,idfa);
     [LYouUserDefauleManager setAppkey:appkey];
-    
     //3.0不一样的接口版本的接口
-    NSString *urlString = [NSString stringWithFormat:@"%@?m=index&c=sales&a=iosinitialize&appid=%@&app_Version=%@",URLPATH,appkey,app_Version];
+    NSString *urlString = [NSString stringWithFormat:@"%@/game/apistart?token=%@&appkey=%@&banid=%@",LY_URLPATH,[LYouUserDefauleManager getToken],appkey,@""];
+    
     [self baseRequrestWithURL:urlString WithSuccess:success WithFailure:failure];
 }
 
@@ -62,7 +62,7 @@
 -(void)TempUserLoginWithResult: (RequestSuccessBlock)success
                   failureBlock: (RequestFailureBlock) failBlock{
     NSString *token = [LYouUserDefauleManager getToken];
-    NSString *urlString = [NSString stringWithFormat:@"%@/user/apilogin?token=%@",LY_URLPATH,token];
+    NSString *urlString = [NSString stringWithFormat:@"%@/user/apilogin?token=%@&appkey=%@&banid=%@",LY_URLPATH,token,[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid]];
     [self baseRequrestWithURL:urlString WithSuccess:success WithFailure:failBlock];
 }
 
@@ -103,7 +103,7 @@
         failure(@"您还没有游客账号");
         return;
     }
-    NSString *urlString =  [NSString stringWithFormat:@"%@/user/apibindphone?name=%@&telphone=%@&pass=%@&captcha=%@",LY_URLPATH,[LYouUserDefauleManager getTempName],num,pwd,verification];
+    NSString *urlString =  [NSString stringWithFormat:@"%@/user/apibindphone?token=%@&telphone=%@&pass=%@&captcha=%@",LY_URLPATH,[LYouUserDefauleManager getToken],num,pwd,verification];
     
     [self baseRequrestWithURL:urlString WithSuccess:success WithFailure:failure];
 }

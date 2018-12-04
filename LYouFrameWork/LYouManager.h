@@ -20,9 +20,11 @@ typedef void(^LY_QuitBlock)(NSString *message);
 /**
  *  @from                  v1.0
  *  @brief                 支付
- *  @param appkey          app标识符
+ *  @param appkey          app游戏key
+ *  @param banid          app游戏渠道id
  */
--(void)LY_initWithAppkey:(NSString *)appkey;
+-(void)LY_initWithAppkey:(NSString *)appkey withBanid:(NSString *)banid;
+
 
 #pragma mark - 显示登录页面
 -(void)LY_ShowLoginView:(LoginBlock)loginBlock;
@@ -46,9 +48,11 @@ typedef void(^LY_QuitBlock)(NSString *message);
                   OrderID:(NSString *) orderId
                    Result:(ApplePayResultBlock) result;
 
+
 #pragma mark - 加在处理退出当前登录的地方
 -(void)LY_handleGameQuitWith:(LY_QuitBlock) LY_QuitBlock;
 
+#pragma mark - 退出账号
 -(void)LY_Loginout:(LY_QuitBlock) ly_QuitBlock;
 
 @end

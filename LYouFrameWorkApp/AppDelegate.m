@@ -18,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     /** 初始化内购 */
-    [[LYouManager sharedManager] LY_initWithAppkey:@"123456"];
+    [[LYouManager sharedManager] LY_initWithAppkey:@"NDU3NzE1NzYw" withBanid:@"fffffff"];
     
     return YES;
 }

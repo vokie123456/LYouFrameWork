@@ -11,7 +11,6 @@
 //图片文件目录
 #define  LY_ImagePath  @"images.bundle/"
 //服务器请求地址
-#define URLPATH @"http://games.521xs.com/index.php"
 #define LY_URLPAYPATH @"http://pay-sdk.pk2game.com"
 #define LY_URLPATH @"http://api-sdk.pk2game.com"
 //MD5加密Key

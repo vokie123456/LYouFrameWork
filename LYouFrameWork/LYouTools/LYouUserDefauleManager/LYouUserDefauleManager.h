@@ -34,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 //Appid
 +(NSString *)getAppkey;
 +(void)setAppkey:(NSString *)appkey;
+//banid
++(NSString *)getBanid;
++(void)setBanid:(NSString *)appkey;
 
 //客服信息
 

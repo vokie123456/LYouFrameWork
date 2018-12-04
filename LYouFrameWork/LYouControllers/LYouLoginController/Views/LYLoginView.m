@@ -24,12 +24,11 @@
 }
 
 -(void)initUI{
-    UIImageView *headImageView = [UIImageView new];
-    headImageView.frame = CGRectMake(0, 0, Main_Rotate_Width-80, 65);
-    [headImageView setFtCornerdious:5 Corners:UIRectCornerTopLeft|UIRectCornerTopRight];
-    headImageView.layer.masksToBounds = YES;
-    [self addSubview:headImageView];
+    UIImageView *headImageView = [[UIImageView alloc]init];
     headImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@head_image",LY_ImagePath]];
+    headImageView.frame = CGRectMake(0, 0, Main_Rotate_Width-80, 65);
+    [self addSubview:headImageView];
+    
     /** 标题 */
     UILabel *titleLable = [UILabel new];
     titleLable.textAlignment = NSTextAlignmentCenter;
