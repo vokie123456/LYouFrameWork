@@ -67,6 +67,9 @@
             textFiled.sd_layout.rightSpaceToView(self.bindPhoneView, 80);
             [self addSNSView:self.bindPhoneView];
         }
+        if (textFiled.tag==10||textFiled.tag==11) {
+            textFiled.keyboardType = UIKeyboardTypeNumberPad;
+        }
         /** 分割线 */
         UIView *line = [[UIView alloc]init];
         line.backgroundColor = ColorWithHexRGB(0x684CD7);

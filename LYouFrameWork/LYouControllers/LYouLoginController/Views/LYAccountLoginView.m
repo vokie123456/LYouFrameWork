@@ -59,14 +59,12 @@
         self.accountFiled.textColor = UIColorBlackTheme;
         self.accountFiled.tag = i+10;
         [accountBgView addSubview:self.accountFiled];
-        self.accountFiled.sd_layout.leftSpaceToView(accountBgView, 25).rightSpaceToView(accountBgView, 25).topSpaceToView(accountBgView,0).heightIs(40);
+        self.accountFiled.sd_layout.leftSpaceToView(accountBgView, 40).rightSpaceToView(accountBgView, 40).topSpaceToView(accountBgView,0).heightIs(40);
         if (self.accountFiled.tag==11) {
             /** 密码 */
             self.accountFiled.secureTextEntry = YES;
-            self.accountFiled.sd_layout.rightSpaceToView(accountBgView, 50);
-            [self.accountFiled updateLayout];
             [accountBgView addSubview:self.checkPsdBtn];
-            self.checkPsdBtn.sd_layout.rightSpaceToView(accountBgView, 25).topSpaceToView(accountBgView, 10).widthIs(20).heightIs(20);
+            self.checkPsdBtn.sd_layout.rightSpaceToView(accountBgView, 20).topSpaceToView(accountBgView, 10).widthIs(20).heightIs(20);
         }
     }
     /** 忘记密码 */
@@ -83,7 +81,7 @@
     UIButton *accountLoginBtn = [UIButton new];
     accountLoginBtn.layer.cornerRadius = 20;
     [accountLoginBtn setTitle:@"账号登录" forState:UIControlStateNormal];
-    accountLoginBtn.titleLabel.font = LYFont_Medium(15);
+    accountLoginBtn.titleLabel.font = LYFont_Medium(18);
     [accountLoginBtn setBackgroundColor:ColorWithHexRGB(0x9932CC)];
     [accountLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self addSubview:accountLoginBtn];

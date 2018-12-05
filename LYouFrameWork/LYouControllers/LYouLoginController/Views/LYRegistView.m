@@ -68,6 +68,9 @@
         forgetFiled.tag = i+10;
         [forgetBgView addSubview:forgetFiled];
         forgetFiled.sd_layout.leftSpaceToView(forgetBgView, 25).rightSpaceToView(forgetBgView, 25).topSpaceToView(forgetBgView,0).heightIs(40);
+        if (forgetFiled.tag==10||forgetFiled.tag==11) {
+            forgetFiled.keyboardType = UIKeyboardTypeNumberPad;
+        }
         if (forgetFiled.tag==11) {
             /** 验证码 */
             forgetFiled.sd_layout.rightSpaceToView(forgetBgView, 90);

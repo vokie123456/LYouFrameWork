@@ -42,14 +42,14 @@
     NSArray *titleArray = @[@"游客登录",@"账号登录"];
     for (int i=0; i<2; i++) {
         self.accountLoginBtn = [UIButton new];
-        self.accountLoginBtn.layer.cornerRadius = 20;
+        self.accountLoginBtn.layer.cornerRadius = 45/2;
         [self.accountLoginBtn setTitle:titleArray[i] forState:UIControlStateNormal];
-        self.accountLoginBtn.titleLabel.font = LYFont_Medium(15);
+        self.accountLoginBtn.titleLabel.font = LYFont_Medium(16);
         [self.accountLoginBtn setTitleColor:UIColorBlackTheme forState:UIControlStateNormal];
         [self.accountLoginBtn setBackgroundColor:ColorWithHexRGB(0xB577F4)];
         self.accountLoginBtn.tag = i+10;
         [self addSubview:self.accountLoginBtn];
-        self.accountLoginBtn.sd_layout.leftSpaceToView(self, 25).rightSpaceToView(self, 25).topSpaceToView(headImageView,40+i*60).heightIs(40);
+        self.accountLoginBtn.sd_layout.leftSpaceToView(self, 25).rightSpaceToView(self, 25).topSpaceToView(headImageView,40+i*60).heightIs(45);
         if (self.accountLoginBtn.tag==11) {
             [self.accountLoginBtn setBackgroundColor:ColorWithHexRGB(0x9932CC)];
             [self.accountLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
