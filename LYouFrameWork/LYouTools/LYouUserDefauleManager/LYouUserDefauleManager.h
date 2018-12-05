@@ -38,6 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 +(NSString *)getBanid;
 +(void)setBanid:(NSString *)appkey;
 
+//设备号
++(NSString *)getDeviceId;
+
 //客服信息
 
 +(NSString *)getKF_qq;

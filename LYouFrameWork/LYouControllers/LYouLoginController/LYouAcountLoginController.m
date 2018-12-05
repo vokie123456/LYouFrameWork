@@ -51,6 +51,16 @@
     self.accountView.accountLoginClick = ^(UIView *superView){
         UITextField *accountFiled = (UITextField *)[weakSelf.accountView viewWithTag:10];
         UITextField *pasFiled = (UITextField *)[weakSelf.accountView viewWithTag:11];
+        /** 如果是游客 */
+        if ([accountFiled.text isEqualToString:[LYouUserDefauleManager getTempName]]) {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"您现在是游客账号。为了保障您的账号安全，登录后请绑定手机号，以备账号找回只需。" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [weakSelf loginAsTourist];
+            }];
+            [alert addAction:action];
+            [weakSelf presentViewController:alert animated:YES completion:nil];
+            return;
+        }
         
         [[LYouNetWorkManager instance] LoginWithAppKey:[LYouUserDefauleManager getAppkey] PhoneNumber:accountFiled.text Password:pasFiled.text loginSuccessBlock:^(NSDictionary *dict) {
             NSString *token = [NSString stringWithFormat:@"%@",dict[@"data"][@"token"]];
@@ -109,6 +119,39 @@
             }
         }
     };
+}
+
+-(void)loginAsTourist{
+    /** 游客登录 */
+    NSString *tempName =  [LYouUserDefauleManager getTempName];
+    if ([tempName length] > 1) {
+        //游客登录
+        [[LYouNetWorkManager instance] TempUserLoginWithResult:^(NSDictionary *dict) {
+            NSLog(@"======%@",[LYouUserDefauleManager getTempName]);
+            [self.view removeFromSuperview];
+            [[LYUserCenterManager instance] showFuBiao];
+            [LYouUserDefauleManager setTempName:dict[@"data"][@"username"]];
+            [LYouUserDefauleManager setToken:dict[@"data"][@"token"]];
+            [LYouUserDefauleManager setIsTempUser:@"1"];
+            [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+            self.loginBlock(2,@"",dict[@"data"][@"token"]);
+        } failureBlock:^(NSString *errorMessage) {
+            [SVProgressHUD showErrorWithStatus:errorMessage];
+        }];
+    }else{
+        //注册游客
+        [[LYouNetWorkManager instance] RegisterTempUserWithResult:^(NSDictionary *dict) {
+            NSLog(@"=====%@",dict[@"data"][@"token"]);
+            [LYouUserDefauleManager setTempName:dict[@"data"][@"username"]];
+            [LYouUserDefauleManager setToken:dict[@"data"][@"token"]];
+            [LYouUserDefauleManager setIsTempUser:@"1"];
+            [self.view removeFromSuperview];
+            [[LYUserCenterManager instance] showFuBiao];
+            self.loginBlock(2,@"",dict[@"data"][@"token"]);
+        } failureBlock:^(NSString *errorMessage) {
+            [SVProgressHUD showErrorWithStatus:errorMessage];
+        }];
+    }
 }
 
 -(void)cheakCurrentAcount{

@@ -22,18 +22,8 @@
 }
 #pragma mark -- 初始化
 -(void)initWithAppkey:(NSString *)appkey SuccessBlock:(RequestSuccessBlock)success FailureBock:(RequestFailureBlock)failure{
-    
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    //app版本
-    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-    //app build版本
-    NSString *app_build = [infoDictionary objectForKey:@"CFBundleVersion"];
-    //idfa
-    NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
-    NSLog(@"app_Version = %@, app_build = %@, idfa = %@",app_Version,app_build,idfa);
-    [LYouUserDefauleManager setAppkey:appkey];
-    //3.0不一样的接口版本的接口
-    NSString *urlString = [NSString stringWithFormat:@"%@/game/apistart?token=%@&appkey=%@&banid=%@",LY_URLPATH,[LYouUserDefauleManager getToken],appkey,@""];
+
+    NSString *urlString = [NSString stringWithFormat:@"%@/game/apipayinit?appkey=%@",LY_URLPATH,appkey];
     
     [self baseRequrestWithURL:urlString WithSuccess:success WithFailure:failure];
 }
@@ -47,14 +37,14 @@
 
 #pragma mark -- 账号登录
 -(void)LoginWithAppKey:(NSString *)appkey PhoneNumber:(NSString *)number Password:(NSString *)pwd loginSuccessBlock:(RequestSuccessBlock)success FailureBock:(RequestFailureBlock)failure{
-    NSString *urlString = @"";
-    NSString *token = [LYouUserDefauleManager getToken];
-    if (token.length==0||token==nil) {
-        urlString = [NSString stringWithFormat:@"%@/user/apilogin?username=%@&pass=%@&appkey=%@&banid=%@",LY_URLPATH,number,pwd,[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid]];
-    }else{
-        urlString = [NSString stringWithFormat:@"%@/user/apilogin?token=%@&appkey=%@&banid=%@",LY_URLPATH,[LYouUserDefauleManager getToken],[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid]];
-    }
-    
+//    NSString *urlString = @"";
+//    NSString *token = [LYouUserDefauleManager getToken];
+//    if (token.length==0||token==nil) {
+//        urlString = [NSString stringWithFormat:@"%@/user/apilogin?username=%@&pass=%@&appkey=%@&banid=%@",LY_URLPATH,number,pwd,[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid]];
+//    }else{
+//        urlString = [NSString stringWithFormat:@"%@/user/apilogin?token=%@&appkey=%@&banid=%@",LY_URLPATH,[LYouUserDefauleManager getToken],[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid]];
+//    }
+    NSString *urlString = [NSString stringWithFormat:@"%@/user/apilogin?username=%@&pass=%@&appkey=%@&banid=%@",LY_URLPATH,number,pwd,[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid]];
     [self baseRequrestWithURL:urlString WithSuccess:success WithFailure:failure];
     
 }
@@ -71,7 +61,7 @@
 -(void)RegisterTempUserWithResult: (RequestSuccessBlock)success
                      failureBlock: (RequestFailureBlock) failBlock{
     
-    NSString *urlString = [NSString stringWithFormat:@"%@/user/apiregister?tourist=1&deviceid=%@&appkey=%@&banid=%@",LY_URLPATH,[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid]];
+    NSString *urlString = [NSString stringWithFormat:@"%@/user/apiregister?tourist=1&deviceid=%@&appkey=%@&banid=%@",LY_URLPATH,[LYouUserDefauleManager getDeviceId],[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid]];
     
     [self baseRequrestWithURL:urlString WithSuccess:success WithFailure:failBlock];
     
@@ -80,7 +70,7 @@
 #pragma mark -- 注册账号
 -(void)RegisteredAccountWithPhoneNum:(NSString *)num Password:(NSString *)pwd Verification:(NSString *)verification SuccessBlock:(RequestSuccessBlock)success FailureBock:(RequestFailureBlock)failure{
     
-    NSString *urlString =  [NSString stringWithFormat:@"%@/user/apiregister?username=%@&pass=%@&deviceid=%@&captcha=%@&tourist=2",LY_URLPATH,num,pwd,[LYouUserDefauleManager getAppkey],verification];
+    NSString *urlString =  [NSString stringWithFormat:@"%@/user/apiregister?username=%@&pass=%@&deviceid=%@&captcha=%@&tourist=2&banid=%@",LY_URLPATH,num,pwd,[LYouUserDefauleManager getDeviceId],verification,[LYouUserDefauleManager getBanid]];
     
     [self baseRequrestWithURL:urlString WithSuccess:success WithFailure:failure];
 }

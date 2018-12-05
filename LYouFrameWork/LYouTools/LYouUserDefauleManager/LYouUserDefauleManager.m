@@ -97,6 +97,11 @@
     [[NSUserDefaults standardUserDefaults] setObject:banid forKey:@"LY_Banid"];
 }
 
++(NSString *)getDeviceId{
+    UIDevice *device = [UIDevice currentDevice];//创建设备对象
+    NSString *deviceUID = [[device identifierForVendor]UUIDString];
+    return deviceUID;
+}
 
 #pragma mark 客服
 +(NSString *)getKF_qq{

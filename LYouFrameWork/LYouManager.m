@@ -13,6 +13,13 @@
 #import "LY_UserViewController.h"
 #import "LY_OtherPayViewController.h"
 
+@interface LYouManager(){
+    NSString *appKeyStr;
+    NSString *banidStr;
+}
+
+@end
+
 @implementation LYouManager
 
 #pragma mark - 初始化LYouManager
@@ -27,28 +34,25 @@
 
 -(void)LY_initWithAppkey:(NSString *)appkey withBanid:(NSString *)banid{
     NSLog(@"初始化内购");
-    [[LYouAppPayController shared]initInPay];
-    /** 保存AppKey */
-    [LYouUserDefauleManager setAppkey:appkey];
-    /** 保存Banid */
-    [LYouUserDefauleManager setBanid:banid];
-    /** 是否初始化成功 */
-    [LYouUserDefauleManager setInitSuccess:YES];
-    /** 获取三方支付链接 */
-    [LYouNetWorkManager instance].ccurl = @"https://sdkpaylist.lygames.cc/index.php?m=admin&c=zfh5&a=zf";
-    
-//    [[LYouNetWorkManager instance]initWithAppkey:appkey SuccessBlock:^(NSDictionary *dict) {
-//        /** 保存AppKey */
-//        [LYouUserDefauleManager setAppkey:appkey];
-//        /** 保存Banid */
-//        [LYouUserDefauleManager setBanid:banid];
-//
-//        /** 是否初始化成功 */
-//        [LYouUserDefauleManager setInitSuccess:YES];
-//
-//    } FailureBock:^(NSString *errorMessage) {
-//
-//    }];
+    appKeyStr = appkey;
+    banidStr = banid;
+    [[LYouNetWorkManager instance]initWithAppkey:appkey SuccessBlock:^(NSDictionary *dict) {
+            [[LYouAppPayController shared]initInPay];
+            /** 保存AppKey */
+            [LYouUserDefauleManager setAppkey:appkey];
+            /** 保存Banid */
+            [LYouUserDefauleManager setBanid:banid];
+            /** 是否初始化成功 */
+            [LYouUserDefauleManager setInitSuccess:YES];
+            /** 是否打开iOS内购 1为开启 2为关闭 */
+            [LYouNetWorkManager instance].onoff = [NSString stringWithFormat:@"%@",dict[@"data"][@"ios_pay"]];
+            /** 获取三方支付链接 */
+            [LYouNetWorkManager instance].ccurl = @"https://sdkpaylist.lygames.cc/index.php?m=admin&c=zfh5&a=zf";
+//            [LYouNetWorkManager instance].ccurl = dict[@"data"][@"pay_url"];
+
+    } FailureBock:^(NSString *errorMessage) {
+        [SVProgressHUD showErrorWithStatus:errorMessage];
+    }];
 }
 
 -(void)LY_ShowLoginView:(LoginBlock)loginBlock{
@@ -68,37 +72,25 @@
                 ProductID:(NSString *) productId
                   OrderID:(NSString *) orderId
                    Result:(ApplePayResultBlock) result{
-    /** 第三方支付 */
-    LY_OtherPayViewController *Apple1VC = [LY_OtherPayViewController shared];
-    
-    Apple1VC.name = name;
-    Apple1VC.money = money;
-    Apple1VC.orderId =orderId;
-    Apple1VC.ly_AppleResultBlock = result;
-    UIViewController *TTop = [LYouTopViewManager topViewController];
-    Apple1VC.view.frame = CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height);
-    
-    [TTop.view addSubview:Apple1VC.view];
-//    if ([LYouNetWorkManager instance].onoff != nil && [[LYouNetWorkManager instance].onoff isEqualToString:@"1"]) {
-//        /** 第三方支付 */
-//        HXH_Apple1ViewController *otherPayVC = [HXH_Apple1ViewController shared];
-//        otherPayVC.name = [NSString stringWithFormat:@"%@",name];
-//        otherPayVC.money = money;
-//        otherPayVC.orderId = orderId;
-//        otherPayVC.ly_AppleResultBlock = result;
-//        UIViewController *TTop = [LYouTopViewManager topViewController];
-//        otherPayVC.view.frame = CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height);
-//        [TTop.view addSubview:otherPayVC.view];
-//
-//    }else{
-//        /** 内购 */
-//        [LYouAppPayController shared].money = money;
-//        [LYouAppPayController shared].LYAppPayResultBlock = result;
-//        [LYouAppPayController shared].orderId = orderId;
-//        [[LYouAppPayController shared] buy:productId];
-//        [LYouUserDefauleManager setLastInPayId:orderId];
-//        [LYouUserDefauleManager setLastInPayMoney:money];
-//    }
+    if ([[LYouNetWorkManager instance].onoff isEqualToString:@"2"]) {
+        /** 第三方支付 */
+        LY_OtherPayViewController *otherPayVC = [LY_OtherPayViewController shared];
+        otherPayVC.name = [NSString stringWithFormat:@"%@",name];
+        otherPayVC.money = money;
+        otherPayVC.orderId = orderId;
+        otherPayVC.ly_AppleResultBlock = result;
+        UIViewController *TTop = [LYouTopViewManager topViewController];
+        otherPayVC.view.frame = CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height);
+        [TTop.view addSubview:otherPayVC.view];
+    }else{
+        /** 内购 */
+        [LYouAppPayController shared].money = money;
+        [LYouAppPayController shared].LYAppPayResultBlock = result;
+        [LYouAppPayController shared].orderId = orderId;
+        [[LYouAppPayController shared] buy:productId];
+        [LYouUserDefauleManager setLastInPayId:orderId];
+        [LYouUserDefauleManager setLastInPayMoney:money];
+    }
 }
 
 #pragma mark - 加在处理退出当前登录的地方
@@ -108,7 +100,6 @@
 
 -(void)LY_Loginout:(LY_QuitBlock) ly_QuitBlock{
     [[LYouNetWorkManager instance] LY_LoginOutGame:[LYouUserDefauleManager getToken] SuccessBlock:^(NSDictionary *dict) {
-        [LYouUserDefauleManager setToken:@""];
         [[LY_UserViewController sharedUserVC].view removeFromSuperview];
         [[LYUserCenterManager instance] hideFuBiao];
         [[LYUserCenterManager instance] closedUserCenter];
@@ -124,14 +115,22 @@
     [[LYouAppPayController shared] initInPay];
     
     [[LYouNetWorkManager instance] initWithAppkey:appkey SuccessBlock:^(NSDictionary *dict){
+        [[LYouAppPayController shared]initInPay];
         /** 保存AppKey */
         [LYouUserDefauleManager setAppkey:appkey];
         /** 保存Banid */
-//        [LYouUserDefauleManager setBanid:banid];
+        [LYouUserDefauleManager setBanid:self->banidStr];
         /** 是否初始化成功 */
         [LYouUserDefauleManager setInitSuccess:YES];
+        /** 是否打开iOS内购 1为开启 2为关闭 */
+        [LYouNetWorkManager instance].onoff = dict[@"data"][@"ios_pay"];
+        /** 获取三方支付链接 */
+        [LYouNetWorkManager instance].ccurl = @"https://sdkpaylist.lygames.cc/index.php?m=admin&c=zfh5&a=zf";
+        //[LYouNetWorkManager instance].ccurl = dict[@"data"][@"pay_url"];
+        
     } FailureBock:^(NSString *errorMessage) {
-        NSLog(@"error = %@",errorMessage);
+        [SVProgressHUD showErrorWithStatus:errorMessage];
+        return ;
     }];
 }
 

@@ -121,7 +121,6 @@ self.headImageView.sd_layout.centerXEqualToView(self.bgImageView).centerYEqualTo
     [self.mainView addSubview:changeAccountBtn];
     changeAccountBtn.sd_layout.leftSpaceToView(self.mainView, 60).topSpaceToView(changeTopLine, 5).rightSpaceToView(self.mainView, 60).heightIs(35);
     [changeAccountBtn addTarget:self action:@selector(changeAccountBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-
 }
 
 #pragma amrk - 绑定手机号/修改密码
