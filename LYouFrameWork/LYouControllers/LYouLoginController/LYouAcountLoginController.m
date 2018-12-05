@@ -57,7 +57,7 @@
         UITextField *pasFiled = (UITextField *)[weakSelf.accountView viewWithTag:11];
         /** 如果是游客 */
         if ([accountFiled.text isEqualToString:[LYouUserDefauleManager getTempName]]) {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"您现在是游客账号。为了保障您的账号安全，登录后请绑定手机号，以备账号找回只需。" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"您现在是游客账号。为了保障您的账号安全，登录后请绑定手机号，以备账号找回之需。" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [weakSelf loginAsTourist];
             }];
