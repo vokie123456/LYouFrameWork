@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2118A2AA21B7CB6800D1547A /* JoDes.m in Sources */ = {isa = PBXBuildFile; fileRef = 2118A2A821B7CB6800D1547A /* JoDes.m */; };
+		2118A2AB21B7CB6800D1547A /* JoDes.h in Headers */ = {isa = PBXBuildFile; fileRef = 2118A2A921B7CB6800D1547A /* JoDes.h */; };
 		2129740821B5248D00246DCF /* LY_BindPhoneController.h in Headers */ = {isa = PBXBuildFile; fileRef = 2129740621B5248D00246DCF /* LY_BindPhoneController.h */; };
 		2129740921B5248D00246DCF /* LY_BindPhoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2129740721B5248D00246DCF /* LY_BindPhoneController.m */; };
 		21298AE221B688C3002A7198 /* LY_OtherPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 21298ADF21B688C3002A7198 /* LY_OtherPayViewController.m */; };
@@ -29,8 +31,6 @@
 		217E777B21B4C73400B7930A /* LYouOtherPayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 217E777921B4C73400B7930A /* LYouOtherPayController.m */; };
 		217E777E21B4CB0100B7930A /* LYouNetWorkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 217E777C21B4CB0100B7930A /* LYouNetWorkManager.h */; };
 		217E777F21B4CB0100B7930A /* LYouNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 217E777D21B4CB0100B7930A /* LYouNetWorkManager.m */; };
-		217E778221B4D69000B7930A /* JoDes.h in Headers */ = {isa = PBXBuildFile; fileRef = 217E778021B4D69000B7930A /* JoDes.h */; };
-		217E778321B4D69000B7930A /* JoDes.m in Sources */ = {isa = PBXBuildFile; fileRef = 217E778121B4D69000B7930A /* JoDes.m */; };
 		217E778F21B50AC700B7930A /* LYUserCenterManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 217E778D21B50AC700B7930A /* LYUserCenterManager.h */; };
 		217E779021B50AC700B7930A /* LYUserCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 217E778E21B50AC700B7930A /* LYUserCenterManager.m */; };
 		217E779321B50BF300B7930A /* LY_UserViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 217E779121B50BF300B7930A /* LY_UserViewController.h */; };
@@ -129,6 +129,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2118A2A821B7CB6800D1547A /* JoDes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoDes.m; sourceTree = "<group>"; };
+		2118A2A921B7CB6800D1547A /* JoDes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoDes.h; sourceTree = "<group>"; };
 		2129740621B5248D00246DCF /* LY_BindPhoneController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LY_BindPhoneController.h; sourceTree = "<group>"; };
 		2129740721B5248D00246DCF /* LY_BindPhoneController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LY_BindPhoneController.m; sourceTree = "<group>"; };
 		21298ADF21B688C3002A7198 /* LY_OtherPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LY_OtherPayViewController.m; sourceTree = "<group>"; };
@@ -151,8 +153,6 @@
 		217E777921B4C73400B7930A /* LYouOtherPayController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYouOtherPayController.m; sourceTree = "<group>"; };
 		217E777C21B4CB0100B7930A /* LYouNetWorkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYouNetWorkManager.h; sourceTree = "<group>"; };
 		217E777D21B4CB0100B7930A /* LYouNetWorkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYouNetWorkManager.m; sourceTree = "<group>"; };
-		217E778021B4D69000B7930A /* JoDes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoDes.h; sourceTree = "<group>"; };
-		217E778121B4D69000B7930A /* JoDes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoDes.m; sourceTree = "<group>"; };
 		217E778D21B50AC700B7930A /* LYUserCenterManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYUserCenterManager.h; sourceTree = "<group>"; };
 		217E778E21B50AC700B7930A /* LYUserCenterManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYUserCenterManager.m; sourceTree = "<group>"; };
 		217E779121B50BF300B7930A /* LY_UserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LY_UserViewController.h; sourceTree = "<group>"; };
@@ -398,8 +398,8 @@
 			children = (
 				21F168EE21AD1EA000C69519 /* LYouMD5Tool.h */,
 				21F168EF21AD1EA000C69519 /* LYouMD5Tool.m */,
-				217E778021B4D69000B7930A /* JoDes.h */,
-				217E778121B4D69000B7930A /* JoDes.m */,
+				2118A2A921B7CB6800D1547A /* JoDes.h */,
+				2118A2A821B7CB6800D1547A /* JoDes.m */,
 			);
 			path = LYouMD5Tool;
 			sourceTree = "<group>";
@@ -618,10 +618,10 @@
 				21F1BCAA21AF895B008CAFA5 /* IQUIViewController+Additions.h in Headers */,
 				21F1BCAE21AF895B008CAFA5 /* IQUIWindow+Hierarchy.h in Headers */,
 				21F168E421AD149100C69519 /* LYouManager.h in Headers */,
+				2118A2AB21B7CB6800D1547A /* JoDes.h in Headers */,
 				21F1BCCC21AFCE3D008CAFA5 /* LYRegistView.h in Headers */,
 				217E777E21B4CB0100B7930A /* LYouNetWorkManager.h in Headers */,
 				21F1BCA121AF895B008CAFA5 /* IQTitleBarButtonItem.h in Headers */,
-				217E778221B4D69000B7930A /* JoDes.h in Headers */,
 				21F1693B21AD269C00C69519 /* LYouUserDefauleManager.h in Headers */,
 				214C051C21B53D0300A58096 /* LY_ModifyPsdController.h in Headers */,
 				21F1BCBF21AFBB78008CAFA5 /* LYForgetPsdView.h in Headers */,
@@ -752,6 +752,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2118A2AA21B7CB6800D1547A /* JoDes.m in Sources */,
 				21F1BCA721AF895B008CAFA5 /* IQKeyboardManager.m in Sources */,
 				21F1695721AD2C4800C69519 /* LYouLoginController.m in Sources */,
 				21F1BCB421AF895B008CAFA5 /* IQKeyboardReturnKeyHandler.m in Sources */,
@@ -771,7 +772,6 @@
 				21F1695D21AD2D8C00C69519 /* LYouTopViewManager.m in Sources */,
 				217E779421B50BF300B7930A /* LY_UserViewController.m in Sources */,
 				214C051D21B53D0300A58096 /* LY_ModifyPsdController.m in Sources */,
-				217E778321B4D69000B7930A /* JoDes.m in Sources */,
 				21F168E521AD149100C69519 /* LYouManager.m in Sources */,
 				21F1BC9621AF895B008CAFA5 /* IQTextView.m in Sources */,
 				21F168EB21AD18D000C69519 /* LYouNetClient.m in Sources */,

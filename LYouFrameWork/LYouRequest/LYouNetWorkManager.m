@@ -65,7 +65,6 @@
     NSString *urlString = [NSString stringWithFormat:@"%@/user/apiregister?tourist=1&deviceid=%@&appkey=%@&banid=%@",LY_URLPATH,[LYouUserDefauleManager getDeviceId],[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid]];
     
     [self baseRequrestWithURL:urlString WithSuccess:success WithFailure:failBlock];
-    
 }
 
 #pragma mark -- 注册账号
