@@ -17,7 +17,8 @@
     if (self)
     {
         self.layer.cornerRadius = 5;
-        self.backgroundColor = ColorWithHexRGB(0xEAEAEA);
+//        self.backgroundColor = ColorWithHexRGB(0xEAEAEA);
+        self.backgroundColor = [UIColor whiteColor];
         [self initUI];
     }
     return self;

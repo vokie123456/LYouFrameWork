@@ -47,6 +47,27 @@
     [self loadWebView];
 }
 -(void)initUI{
+    NSString *user = @"";
+    if ([[LYouUserDefauleManager getIsTempUser] isEqualToString:@"1"]) {
+        user = [LYouUserDefauleManager getTempName];
+    }else{
+        user = [LYouUserDefauleManager getUserName];
+    }
+    if ([user length] <= 1) {
+        [SVProgressHUD showErrorWithStatus:@"请重新登录再试"];
+        [self remove];
+        return;
+    }
+    NSString *ccurlStr = [NSString stringWithFormat:@"%@",[LYouNetWorkManager instance].ccurl];
+    NSString *tempStr = ccurlStr;
+    
+    //    NSString *tempStr =[JoDes decode:ccurlStr key:DESKEY];
+    if (tempStr.length<1) {
+        [SVProgressHUD showErrorWithStatus:@"请重新启动再试"];
+        [self remove];
+        return;
+    }
+    
     self.webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.BGView.bounds.size.width, self.BGView.bounds.size.height)];
     self.webView.delegate = self;
     self.webView.scrollView.bounces = NO;
