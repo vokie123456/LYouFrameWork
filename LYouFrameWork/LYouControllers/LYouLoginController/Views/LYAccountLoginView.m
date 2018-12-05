@@ -59,7 +59,12 @@
         [accountBgView addSubview:self.accountFiled];
         self.accountFiled.sd_layout.leftSpaceToView(accountBgView, 25).rightSpaceToView(accountBgView, 25).topSpaceToView(accountBgView,0).heightIs(40);
         if (self.accountFiled.tag==11) {
+            /** 密码 */
             self.accountFiled.secureTextEntry = YES;
+            self.accountFiled.sd_layout.rightSpaceToView(accountBgView, 50);
+            [self.accountFiled updateLayout];
+            [accountBgView addSubview:self.checkPsdBtn];
+            self.checkPsdBtn.sd_layout.rightSpaceToView(accountBgView, 25).topSpaceToView(accountBgView, 10).widthIs(20).heightIs(20);
         }
     }
     /** 忘记密码 */
@@ -150,6 +155,30 @@
 {
     if (self.registClick) {
         sender.tag==1000 ? self.registClick(self.superview,RegistAccount) : self.registClick(self.superview,VisitorLogin);
+    }
+}
+
+#pragma mark - 查看密码
+-(UIButton *)checkPsdBtn{
+    if (!_checkPsdBtn) {
+        _checkPsdBtn = [UIButton new];
+        [_checkPsdBtn setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@TT_eye_open",LY_ImagePath]] forState:UIControlStateNormal];
+        [_checkPsdBtn setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@TT_eye_close",LY_ImagePath]] forState:UIControlStateSelected];
+        [_checkPsdBtn setSelected:NO];
+        [_checkPsdBtn addTarget:self action:@selector(checkPsdBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _checkPsdBtn;
+}
+
+-(void)checkPsdBtnClick:(UIButton *)sender
+{
+    UITextField *passfield = (UITextField *)[self viewWithTag:11];
+    if (sender.isSelected) {
+        [sender setSelected:NO];
+        passfield.secureTextEntry=YES;
+    }else{
+        [sender setSelected:YES];
+        passfield.secureTextEntry=NO;
     }
 }
 
