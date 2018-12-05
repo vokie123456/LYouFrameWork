@@ -44,8 +44,8 @@
     [self.view addSubview:self.bindPhoneView];
     self.bindPhoneView.sd_layout.leftSpaceToView(self.view, 10).rightSpaceToView(self.view, 10).topSpaceToView(self.view, Main_Screen_Height/2-100).heightIs(270);
     /** 标题 */
-    NSArray *titleArray = @[@"手机号:",@"验证码:",@"密   码:"];
-    NSArray *placeArray = @[@"请输入手机号",@"验证码",@"请输入密码"];
+    NSArray *titleArray = @[@"手机号:",@"验证码:",@"新密码:"];
+    NSArray *placeArray = @[@"请输入手机号",@"验证码",@"请输入新密码"];
     for (int i=0; i<3; i++) {
         UILabel *titleLable = [[UILabel alloc]init];
         titleLable.font = LYFont_Medium(17);
@@ -131,6 +131,8 @@
 #pragma mark - 确认
 -(void)sureButtonClick:(UIButton *)sender
 {
+    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    [self.view endEditing:YES];
     UITextField *phonefield = (UITextField *)[self.view viewWithTag:10];
     UITextField *verfield = (UITextField *)[self.view viewWithTag:11];
     UITextField *pasfield = (UITextField *)[self.view viewWithTag:12];
@@ -151,7 +153,14 @@
 #pragma mark - 返回
 -(void)backButtonClick:(UIButton *)sender
 {
+    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    [self.view endEditing:YES];
     [self.view removeFromSuperview];
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    [self.view endEditing:YES];
 }
 
 @end

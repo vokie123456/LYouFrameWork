@@ -24,6 +24,8 @@
     /** 创建登录窗口 */
  self.forgetView.sd_layout.centerYEqualToView(self.view).centerXEqualToView(self.view).widthIs(Main_Rotate_Width-80).heightIs(334);
      self.forgetView.backClick = ^(UIView *superView){
+         [[UIApplication sharedApplication].keyWindow endEditing:YES];
+         [superView endEditing:YES];
          [superView removeFromSuperview];
      };
      WeakSelf(weakSelf);
@@ -40,6 +42,8 @@
      };
     /** 完成 */
     self.forgetView.submitPassClick = ^(UIView * _Nonnull superView) {
+        [[UIApplication sharedApplication].keyWindow endEditing:YES];
+        [superView endEditing:YES];
         UITextField *phonefield = (UITextField *)[superView viewWithTag:10];
         UITextField *verifield = (UITextField *)[superView viewWithTag:11];
         UITextField *pasfield = (UITextField *)[superView viewWithTag:12];
@@ -71,6 +75,11 @@
         countDownButton.enabled = YES;
         return @"重新获取";
     }];
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+        [[UIApplication sharedApplication].keyWindow endEditing:YES];
+        [self.view endEditing:YES];
 }
 
 #pragma mark - initForgetViewUI

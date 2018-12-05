@@ -81,6 +81,8 @@
 
 #pragma mark - x确认
 -(void)sureButtonClick:(UIButton *)sneder{
+    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    [self.view endEditing:YES];
     UITextField *passField = (UITextField *)[self.view viewWithTag:10];
     UITextField *repassField = (UITextField *)[self.view viewWithTag:11];
     if (passField.text.length == 0) {
@@ -117,7 +119,14 @@
 #pragma mark - 返回
 -(void)backButtonClick:(UIButton *)sender
 {
+    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    [self.view endEditing:YES];
     [self.view removeFromSuperview];
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    [self.view endEditing:YES];
 }
 
 @end

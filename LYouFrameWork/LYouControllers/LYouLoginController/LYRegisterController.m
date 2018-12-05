@@ -25,6 +25,8 @@
     self.registView.sd_layout.centerYEqualToView(self.view).centerXEqualToView(self.view).widthIs(Main_Rotate_Width-80).heightIs(334);
     /** 返回 */
     self.registView.backClick = ^(UIView * _Nonnull superView) {
+        [[UIApplication sharedApplication].keyWindow endEditing:YES];
+        [superView endEditing:YES];
         [superView removeFromSuperview];
     };
     /** 发送验证码 */
@@ -53,6 +55,8 @@
     };
     /** 注册 */
     self.registView.submitPassClick = ^(UIView * _Nonnull superView) {
+        [[UIApplication sharedApplication].keyWindow endEditing:YES];
+        [superView endEditing:YES];
         UITextField *phonefield = (UITextField *)[superView viewWithTag:10];
         UITextField *verififield = (UITextField *)[superView viewWithTag:11];
         UITextField *pasfield = (UITextField *)[superView viewWithTag:12];
@@ -75,6 +79,11 @@
         _registView = [[LYRegistView alloc]init];
     }
     return _registView;
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    [self.view endEditing:YES];
 }
 
 @end

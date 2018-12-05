@@ -41,6 +41,8 @@
  self.accountView.sd_layout.centerYEqualToView(self.view).centerXEqualToView(self.view).widthIs(Main_Rotate_Width-80).heightIs(334);
     /** 忘记密码 */
     self.accountView.forgetPsdClick = ^(UIView *superView){
+        [[UIApplication sharedApplication].keyWindow endEditing:YES];
+        [superView endEditing:YES];
         LYFogetPswordController *forgetVC = [[LYFogetPswordController alloc]init];
         forgetVC.view.frame = CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height);
         UIViewController *TTop = [LYouTopViewManager topViewController];
@@ -49,6 +51,8 @@
     /** 账号登录 */
     WeakSelf(weakSelf);
     self.accountView.accountLoginClick = ^(UIView *superView){
+        [[UIApplication sharedApplication].keyWindow endEditing:YES];
+        [superView endEditing:YES];
         UITextField *accountFiled = (UITextField *)[weakSelf.accountView viewWithTag:10];
         UITextField *pasFiled = (UITextField *)[weakSelf.accountView viewWithTag:11];
         /** 如果是游客 */
@@ -80,6 +84,8 @@
     };
     /** 账号注册 */
     self.accountView.registClick = ^(UIView * _Nonnull superView, AccountLoginStyle style){
+        [[UIApplication sharedApplication].keyWindow endEditing:YES];
+        [superView endEditing:YES];
         if (style==RegistAccount) {
             /** 注册账号 */
             LYRegisterController *registVC = [[LYRegisterController alloc]init];
@@ -180,6 +186,11 @@
         _accountView = [[LYAccountLoginView alloc]init];
     }
     return _accountView;
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [[UIApplication sharedApplication].keyWindow endEditing:YES];
+    [self.view endEditing:YES];
 }
 
 @end

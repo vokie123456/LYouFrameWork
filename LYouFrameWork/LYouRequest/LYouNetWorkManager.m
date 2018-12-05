@@ -45,6 +45,7 @@
 //        urlString = [NSString stringWithFormat:@"%@/user/apilogin?token=%@&appkey=%@&banid=%@",LY_URLPATH,[LYouUserDefauleManager getToken],[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid]];
 //    }
     NSString *urlString = [NSString stringWithFormat:@"%@/user/apilogin?username=%@&pass=%@&appkey=%@&banid=%@",LY_URLPATH,number,pwd,[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid]];
+    
     [self baseRequrestWithURL:urlString WithSuccess:success WithFailure:failure];
     
 }
