@@ -28,6 +28,12 @@
     return instence;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self cheakCurrentAcount];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.accountView];
@@ -108,13 +114,14 @@
 -(void)cheakCurrentAcount{
     UITextField *accountFiled = (UITextField *)[self.accountView viewWithTag:10];
     UITextField *pasFiled = (UITextField *)[self.accountView viewWithTag:11];
-    if ([[LYouUserDefauleManager getTempName] isEqualToString:@"1"]) {
-        NSString *string = [LYouUserDefauleManager getIsTempUser];
-        accountFiled.text = [string stringByReplacingOccurrencesOfString:@"游客" withString:@""];
+    
+    if ([LYouUserDefauleManager getTempName].length!=0) {
+        NSString *tempName = [LYouUserDefauleManager getTempName];
+        accountFiled.text = tempName;
         pasFiled.text = @"123456";
         return;
     }
-    if ([LYouUserDefauleManager getUserName].length > 1) {
+    if ([LYouUserDefauleManager getUserName].length!=0) {
         NSString *username = [LYouUserDefauleManager getUserName];
         accountFiled.text = username;
     }

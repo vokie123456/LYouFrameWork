@@ -34,6 +34,9 @@
     [LYouUserDefauleManager setBanid:banid];
     /** 是否初始化成功 */
     [LYouUserDefauleManager setInitSuccess:YES];
+    /** 获取三方支付链接 */
+    [LYouNetWorkManager instance].ccurl = @"https://sdkpaylist.lygames.cc/index.php?m=admin&c=zfh5&a=zf";
+    
 //    [[LYouNetWorkManager instance]initWithAppkey:appkey SuccessBlock:^(NSDictionary *dict) {
 //        /** 保存AppKey */
 //        [LYouUserDefauleManager setAppkey:appkey];
@@ -49,6 +52,10 @@
 }
 
 -(void)LY_ShowLoginView:(LoginBlock)loginBlock{
+    //检测SKDK初始化状态
+    if (![LYouUserDefauleManager isInitSuccess]) {
+        [self performSelectorInBackground:@selector(reInitWithAppkey:) withObject:[LYouUserDefauleManager getAppkey]];
+    }
     LYouLoginController *loginVC = [[LYouLoginController alloc]init];
     loginVC.loginBlock = loginBlock;
     loginVC.view.frame = CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height);
@@ -109,6 +116,22 @@
         ly_QuitBlock(dict[@"message"]);
     } FailureBock:^(NSString *errorMessage) {
         [SVProgressHUD showErrorWithStatus:@"退出失败"];
+    }];
+}
+
+#pragma mark - 重新初始化SDK
+-(void)reInitWithAppkey:(NSString *)appkey{
+    [[LYouAppPayController shared] initInPay];
+    
+    [[LYouNetWorkManager instance] initWithAppkey:appkey SuccessBlock:^(NSDictionary *dict){
+        /** 保存AppKey */
+        [LYouUserDefauleManager setAppkey:appkey];
+        /** 保存Banid */
+//        [LYouUserDefauleManager setBanid:banid];
+        /** 是否初始化成功 */
+        [LYouUserDefauleManager setInitSuccess:YES];
+    } FailureBock:^(NSString *errorMessage) {
+        NSLog(@"error = %@",errorMessage);
     }];
 }
 

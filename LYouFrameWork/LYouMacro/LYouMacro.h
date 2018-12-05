@@ -17,6 +17,10 @@
 #define Main_Rotate_Width  (IsPortrait ? Main_Screen_Width : Main_Screen_Height)
 #define Main_Rotate_Height  (IsPortrait ? Main_Screen_Height : Main_Screen_Width)
 
+#define MainWindows [[[UIApplication sharedApplication] delegate] window]
+/** 判断是否iphoneX系列 */
+
+
 /*! 颜色 */
 #define ColorWithRGBA(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 #define ColorWithRGB(r,g,b) ColorWithRGBA(r,g,b,1)

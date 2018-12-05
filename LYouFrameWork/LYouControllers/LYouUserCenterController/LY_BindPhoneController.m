@@ -104,29 +104,27 @@
             [SVProgressHUD showErrorWithStatus:@"请输入正确手机号"];
             return;
         }
+        /** 发送验证码 */
         [[LYouNetWorkManager instance] getVerifyMessageWithPhone:phonefield.text withType:@"2" SuccessBlock:^(NSDictionary *dict) {
             [SVProgressHUD showSuccessWithStatus:@"发送成功!"];
-            [self sendSuccess:sender];
+            /** 开始倒计时 */
+            sender.enabled = NO;
+            [sender startWithSecond:60.0];
+            [sender didChange:^NSString *(LYCountDownButton *countDownButton,int second) {
+                [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                [sender setBackgroundColor:[UIColor lightGrayColor]];
+                NSString *title = [NSString stringWithFormat:@"%ds",second];
+                return title;
+            }];
+            [sender didFinished:^NSString *(LYCountDownButton *countDownButton, int second) {
+                [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                [sender setBackgroundColor:ColorWithHexRGB(0x5C3BFE)];
+                countDownButton.enabled = YES;
+                return @"重新获取";
+            }];
         } FailureBock:^(NSString *errorMessage) {
             [SVProgressHUD showErrorWithStatus:errorMessage];
         }];
-    }];
-}
-
--(void)sendSuccess:(LYCountDownButton *)sender{
-    sender.enabled = NO;
-    [sender startWithSecond:60.0];
-    [sender didChange:^NSString *(LYCountDownButton *countDownButton,int second) {
-        [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [sender setBackgroundColor:[UIColor lightGrayColor]];
-        NSString *title = [NSString stringWithFormat:@"%ds",second];
-        return title;
-    }];
-    [sender didFinished:^NSString *(LYCountDownButton *countDownButton, int second) {
-        [sender setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [sender setBackgroundColor:ColorWithHexRGB(0x5C3BFE)];
-        countDownButton.enabled = YES;
-        return @"重新获取";
     }];
 }
 

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LYRegistView : UIView
 
 @property(nonatomic,copy) void (^backClick)(UIView *superView);
-@property(nonatomic,copy) void (^sendSMSClick)(LYCountDownButton *sender);
+@property(nonatomic,copy) void (^sendSMSClick)(LYCountDownButton *sender,UIView *superView);
 @property(nonatomic,copy) void (^submitPassClick)(UIView *superView);
 @property(nonatomic,strong) LYCountDownButton *button;
 @property(nonatomic,strong) UIButton *checkPsdBtn;

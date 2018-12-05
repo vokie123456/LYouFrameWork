@@ -39,26 +39,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setOption];
     [self initUI];
 }
--(void)setOption{
-    if ([LYouNetWorkManager instance].ccurl.length > 1){
-        NSString *temp = [JoDes decode:[LYouNetWorkManager instance].string key:DESKEY];
-        NSArray *array = [temp componentsSeparatedByString:@"&"];
-        if (array.count > 0) {
-            for (int i = 0; i < array.count; i ++) {
-                if (i == 0) {
-                    self.string1 = array[0];
-                }else if (i == 1){
-                    self.string2 = array[1];
-                }else if (i==2){
-                    self.string3 = array[2];
-                }
-            }
-        }
-    }
-}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self loadWebView];
@@ -84,8 +67,10 @@
         [self remove];
         return;
     }
-//    NSString *tempStr =[JoDes decode:[LYouNetWorkManager instance].ccurl key:DESKEY];
-    NSString *tempStr = @"https://sdkpaylist.lygames.cc/index.php?m=admin&c=zfh5&a=zf";
+    NSString *ccurlStr = [NSString stringWithFormat:@"%@",[LYouNetWorkManager instance].ccurl];
+    NSString *tempStr = ccurlStr;
+
+//    NSString *tempStr =[JoDes decode:ccurlStr key:DESKEY];
     if (tempStr.length<1) {
         [SVProgressHUD showErrorWithStatus:@"请重新启动再试"];
         [self remove];

@@ -113,7 +113,7 @@
             return;
         }
         if (weakSelf.sendSMSClick) {
-            weakSelf.sendSMSClick(sender);
+            weakSelf.sendSMSClick(sender,weakSelf.superview);
         }
     }];
 }

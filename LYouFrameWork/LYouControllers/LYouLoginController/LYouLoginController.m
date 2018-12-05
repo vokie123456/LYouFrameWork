@@ -33,7 +33,7 @@
     [super viewDidLoad];
     [self.view addSubview:self.loginView];
     /** 创建登录窗口 */
-    WeakSelf(weakSelf); self.loginView.sd_layout.centerYEqualToView(self.view).centerXEqualToView(self.view).widthIs(Main_Rotate_Width-80).heightIs(260);
+ self.loginView.sd_layout.centerYEqualToView(self.view).centerXEqualToView(self.view).widthIs(Main_Rotate_Width-80).heightIs(260);
      self.loginView.accountLoginClick = ^(UIView *superView,AccountLoginStyle style){
          if (style==VisitorLogin) {
              NSString *tempName =  [LYouUserDefauleManager getTempName];
