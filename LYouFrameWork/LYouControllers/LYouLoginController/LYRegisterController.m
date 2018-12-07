@@ -67,6 +67,9 @@
             [LYouUserDefauleManager setIsTempUser:@"0"];
             [[LYouAcountLoginController sharedVC] cheakCurrentAcount];
             [superView removeFromSuperview];
+            if (self.registSuccess) {
+                self.registSuccess();
+            }
         } FailureBock:^(NSString *errorMessage) {
             [SVProgressHUD showErrorWithStatus:errorMessage];
         }];

@@ -8,6 +8,9 @@
 
 #import "LYUserCenterManager.h"
 #import "LY_UserViewController.h"
+#import "LY_BindPhoneController.h"
+#import "LY_ModifyPsdController.h"
+
 #define FubiaoWidth  50
 
 @interface LYUserCenterManager()
@@ -69,6 +72,8 @@
             self.showUserVC.view.frame = temp2;
         } completion:^(BOOL finished) {
             [self.showUserVC.view removeFromSuperview];
+            [[LY_BindPhoneController shared].view removeFromSuperview];
+            [[LY_ModifyPsdController shared].view removeFromSuperview];
         }];
         self.isShowUserVC = NO;
     }else{

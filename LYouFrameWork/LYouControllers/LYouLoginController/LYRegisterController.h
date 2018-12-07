@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LYRegisterController : UIViewController
 
+@property(nonatomic,copy) void (^registSuccess)(void);
+
 @end
 
 NS_ASSUME_NONNULL_END

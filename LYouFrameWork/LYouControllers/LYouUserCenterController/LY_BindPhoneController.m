@@ -70,6 +70,9 @@
         if (textFiled.tag==10||textFiled.tag==11) {
             textFiled.keyboardType = UIKeyboardTypeNumberPad;
         }
+        if (textFiled.tag==12) {
+            textFiled.secureTextEntry = YES;
+        }
         /** 分割线 */
         UIView *line = [[UIView alloc]init];
         line.backgroundColor = ColorWithHexRGB(0x684CD7);
@@ -140,15 +143,18 @@
     UITextField *verfield = (UITextField *)[self.view viewWithTag:11];
     UITextField *pasfield = (UITextField *)[self.view viewWithTag:12];
     [[LYouNetWorkManager instance] AddPhoneNumberWithPhoneNum:phonefield.text Password:pasfield.text Verification:verfield.text SuccessBlock:^(NSDictionary *dict) {
+        if (self.bindSuccess) {
+            self.bindSuccess();
+        }
         [SVProgressHUD showSuccessWithStatus:@"绑定成功"];
         [LYouUserDefauleManager setUserName:phonefield.text];
         [LYouUserDefauleManager setUserPassword:pasfield.text];
         [LYouUserDefauleManager setIsTempUser:@"0"];
         [LYouUserDefauleManager setTempName:@""];
         [self.view removeFromSuperview];
-        
+
     } FailureBock:^(NSString *errorMessage) {
-        
+
         [SVProgressHUD showErrorWithStatus:errorMessage];
     }];
 }

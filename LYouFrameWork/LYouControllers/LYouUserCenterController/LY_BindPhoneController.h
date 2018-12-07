@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LY_BindPhoneController : UIViewController
 
 +(instancetype)shared;
+@property(nonatomic,copy) void (^bindSuccess)(void);
 
 @end
 

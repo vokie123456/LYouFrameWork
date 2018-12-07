@@ -99,7 +99,18 @@
 }
 
 -(void)LY_Loginout:(LY_QuitBlock) ly_QuitBlock{
+    /** 如果是游客 */
+    if ([LYouUserDefauleManager getTempName].length>0) {
+        [LYouUserDefauleManager setToken:@""];
+        [[LY_UserViewController sharedUserVC].view removeFromSuperview];
+        [[LYUserCenterManager instance] hideFuBiao];
+        [[LYUserCenterManager instance] closedUserCenter];
+        [[LYUserCenterManager instance] QuitGame];
+        ly_QuitBlock(@"退出成功");
+        return;
+    }
     [[LYouNetWorkManager instance] LY_LoginOutGame:[LYouUserDefauleManager getToken] SuccessBlock:^(NSDictionary *dict) {
+        [LYouUserDefauleManager setToken:@""];
         [[LY_UserViewController sharedUserVC].view removeFromSuperview];
         [[LYUserCenterManager instance] hideFuBiao];
         [[LYUserCenterManager instance] closedUserCenter];

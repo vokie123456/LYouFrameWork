@@ -47,6 +47,12 @@
         forgetVC.view.frame = CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height);
         UIViewController *TTop = [LYouTopViewManager topViewController];
         [TTop.view addSubview:forgetVC.view];
+        forgetVC.forgetSuccess = ^{
+            UITextField *accountFiled = (UITextField *)[superView viewWithTag:10];
+            UITextField *pasFiled = (UITextField *)[superView viewWithTag:11];
+            accountFiled.text = [LYouUserDefauleManager getUserName];
+            pasFiled.text = [LYouUserDefauleManager getUserPassword];
+        };
     };
     /** 账号登录 */
     WeakSelf(weakSelf);
@@ -92,6 +98,12 @@
             registVC.view.frame = CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height);
             UIViewController *TTop = [LYouTopViewManager topViewController];
             [TTop.view addSubview:registVC.view];
+            registVC.registSuccess = ^{
+                UITextField *accountFiled = (UITextField *)[superView viewWithTag:10];
+                UITextField *pasFiled = (UITextField *)[superView viewWithTag:11];
+                accountFiled.text = [LYouUserDefauleManager getUserName];
+                pasFiled.text = [LYouUserDefauleManager getUserPassword];
+            };
         }else{
             /** 游客登录 */
             NSString *tempName =  [LYouUserDefauleManager getTempName];

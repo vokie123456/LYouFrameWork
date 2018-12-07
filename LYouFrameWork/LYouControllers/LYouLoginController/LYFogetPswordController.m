@@ -31,8 +31,7 @@
      WeakSelf(weakSelf);
      self.forgetView.sendSMSClick = ^(LYCountDownButton *sender){
          /** 开始倒计时 */
-         UITextField *phonefield = (UITextField *)[weakSelf.forgetView viewWithTag:10];
-         
+         UITextField *phonefield = (UITextField *)[self.forgetView viewWithTag:10];
          [[LYouNetWorkManager instance]getVerifyMessageWithPhone:phonefield.text withType:@"3" SuccessBlock:^(NSDictionary *dict) {
              [SVProgressHUD showSuccessWithStatus:@"发送成功!"];
              [weakSelf sendSuccess:sender];
@@ -51,9 +50,13 @@
         [[LYouNetWorkManager instance]GetBackPassWordWithPhoneNum:phonefield.text Password:pasfield.text Verification:verifield.text SuccessBlock:^(NSDictionary *dict) {
             [SVProgressHUD showSuccessWithStatus:@"密码找回成功!"];
             [LYouUserDefauleManager setIsTempUser:@"0"];
+            [LYouUserDefauleManager setUserName:phonefield.text];
             [LYouUserDefauleManager setUserPassword:pasfield.text];
             [[LYouAcountLoginController sharedVC] cheakCurrentAcount];
             [superView removeFromSuperview];
+            if (self.forgetSuccess) {
+                self.forgetSuccess();
+            }
         } FailureBock:^(NSString *errorMessage) {
             [SVProgressHUD showErrorWithStatus:errorMessage];
         }];

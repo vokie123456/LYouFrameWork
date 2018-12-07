@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LYFogetPswordController : UIViewController
 
+@property(nonatomic,copy) void (^forgetSuccess)(void);
+
 @end
 
 NS_ASSUME_NONNULL_END

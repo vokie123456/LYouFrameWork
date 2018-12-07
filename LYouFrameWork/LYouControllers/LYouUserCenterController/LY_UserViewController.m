@@ -33,6 +33,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    
     if ([[LYouUserDefauleManager getIsTempUser] isEqualToString:@"1"]) {
         self.bindImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@手机",LY_ImagePath]];
         self.bindImage.sd_layout.widthIs(20).heightIs(25);
@@ -43,6 +44,7 @@
         self.bindPhoneLable.text = @"绑定手机号";
         return;
     }
+    
     if ([LYouUserDefauleManager getUserName].length > 1) {
         self.bindImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@密码",LY_ImagePath]];
         self.bindImage.sd_layout.widthIs(25).heightIs(25);
@@ -130,12 +132,25 @@ self.headImageView.sd_layout.centerXEqualToView(self.bgImageView).centerYEqualTo
         LY_BindPhoneController *bindPhone = [LY_BindPhoneController shared];
         [self.view addSubview:bindPhone.view];
         bindPhone.view.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, 0).widthIs(Main_Rotate_Width/3*2).heightIs(Main_Screen_Height);
+        bindPhone.bindSuccess = ^{
+            [self bindPhoneSuccess];
+        };
     }else{
         /** 修改密码 */
         LY_ModifyPsdController *modifyPsd = [LY_ModifyPsdController shared];
         [self.view addSubview:modifyPsd.view];
         modifyPsd.view.sd_layout.leftSpaceToView(self.view, 0).topSpaceToView(self.view, 0).widthIs(Main_Rotate_Width/3*2).heightIs(Main_Screen_Height);
     }
+}
+
+-(void)bindPhoneSuccess{
+    self.bindImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@密码",LY_ImagePath]];
+    self.bindImage.sd_layout.widthIs(25).heightIs(25);
+    [self.bindImage updateLayout];
+    NSString *username = [LYouUserDefauleManager getUserName];
+    NSString *lastStr   =  [NSString stringWithFormat:@"您好, %@",username];
+    self.userNameLable.text = lastStr;
+    self.bindPhoneLable.text = @"更换密码";
 }
 
 #pragma mark - 切换账号
@@ -158,6 +173,8 @@ self.headImageView.sd_layout.centerXEqualToView(self.bgImageView).centerYEqualTo
     CGPoint point = [[touches anyObject] locationInView:self.view];
     if (![self.mainView.layer containsPoint:point]) {
         [[LYUserCenterManager instance] CloseFubiaoAction];
+        [[LY_BindPhoneController shared].view removeFromSuperview];
+        [[LY_ModifyPsdController shared].view removeFromSuperview];
     }
 }
 
