@@ -125,9 +125,11 @@
     NSError *error = nil;
     if (request) {
         NSData *userdata = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        if (userdata) {
-            NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:userdata options:NSJSONReadingMutableContainers error:nil];
-            
+        NSString *resultJoDes = [[NSString alloc]initWithData:userdata encoding:NSUTF8StringEncoding];
+        NSString *jsonStr = [JoDes decode:resultJoDes key:DESKEY];
+        NSData *data =[jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+        if (data) {
+            NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             if ([dictionary[@"code"] isEqualToString:@"0"]) {
                 success(dictionary);
             }else{

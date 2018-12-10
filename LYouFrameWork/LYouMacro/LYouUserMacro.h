@@ -16,7 +16,7 @@
 #define LY_URLPATH @"http://api-sdk.pk2game.com"
 //MD5加密Key
 #define MD5_key @"192006250b4c09247ec02edce69f6a2d"
-#define DESKEY @"Pn4DKuR4"
+#define DESKEY @"LZQ1Yit8"
 //游客名
 #define TEMPNAME                             @"TempName"
 //用户名
