@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LYouLoginController : UIViewController
-typedef void(^LoginBlock)(int code,NSString *uid,NSString *token);
+typedef void(^LoginBlock)(int style,NSString *token);
 
 +(instancetype)sharedVC;
 @property (nonatomic, copy) LoginBlock loginBlock;

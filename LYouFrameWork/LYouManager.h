@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface LYouManager : NSObject
-typedef void(^LoginBlock)(int code,NSString *uid,NSString *token);
+typedef void(^LoginBlock)(int style,NSString *token);
 typedef void(^ApplePayResultBlock)(int code,NSString *reason);
 typedef void(^LY_QuitBlock)(NSString *message);
 
@@ -42,15 +42,14 @@ typedef void(^LY_QuitBlock)(NSString *message);
  *  3 结果不明
  */
 #pragma mark - 根据金额 和 产品名称支付
-- (void)LY_PayProductName:(NSString *) name
+- (void)LY_PayProductId:(NSString *) proId
+                    ServerId:(NSString *) server_id
+                    Roleid:(NSString *) roleid
                     Money:(NSString *) money
-                ProductID:(NSString *) productId
                   OrderID:(NSString *) orderId
+                   Custom:(NSString *)custom
                    Result:(ApplePayResultBlock) result;
 
-
-#pragma mark - 加在处理退出当前登录的地方
--(void)LY_handleGameQuitWith:(LY_QuitBlock) LY_QuitBlock;
 
 #pragma mark - 退出账号
 -(void)LY_Loginout:(LY_QuitBlock) ly_QuitBlock;

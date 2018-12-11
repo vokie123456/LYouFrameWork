@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void(^LoginBlock)(int code,NSString *uid,NSString *token);
+typedef void(^LoginBlock)(int style,NSString *token);
 
 @interface LYouAcountLoginController : UIViewController
 

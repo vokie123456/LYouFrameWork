@@ -97,7 +97,8 @@
         [self remove];
         return;
     }
-    NSString *urlString =  [NSString stringWithFormat:@"%@&uid=%@&bundleID=%@&productID=12345678&price=%@&value=%@&game_trade_no=%@",tempStr,user,[LYouUserDefauleManager getAppkey],self.money,self.name,self.orderId];
+    NSString *urlString =  [NSString stringWithFormat:@"%@?appkey=%@&banid=%@&token=%@&amt=%@&server_id=%@&cporder=%@&roleid=%@&goodsid=%@&custom=%@",tempStr,[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid],[LYouUserDefauleManager getToken],self.money,self.serverId,self.orderId,self.roleid,self.proId,self.custom];
+    
     NSString* encodedString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL* url = [NSURL URLWithString:encodedString];
     NSURLRequest* request = [NSURLRequest requestWithURL:url];
@@ -138,6 +139,7 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     NSString* reqUrl = request.URL.absoluteString;
+    
     if (self.string1) {
         if ([reqUrl hasPrefix:self.string1]) {
             BOOL bSucc = [[UIApplication sharedApplication]openURL:request.URL];

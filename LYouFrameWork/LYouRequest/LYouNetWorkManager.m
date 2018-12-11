@@ -40,15 +40,14 @@
 -(void)LoginWithAppKey:(NSString *)appkey PhoneNumber:(NSString *)number Password:(NSString *)pwd loginSuccessBlock:(RequestSuccessBlock)success FailureBock:(RequestFailureBlock)failure{
     NSString *urlString = @"";
     NSString *token = [LYouUserDefauleManager getToken];
+    NSString *joDesPwd = [JoDes encode:pwd key:DESKEY];
     
     if (token.length==0||token==nil) {
-        urlString = [NSString stringWithFormat:@"%@/user/apilogin?username=%@&pass=%@&appkey=%@&banid=%@",LY_URLPATH,number,pwd,[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid]];
+        urlString = [NSString stringWithFormat:@"%@/user/apilogin?username=%@&pass=%@&appkey=%@&banid=%@",LY_URLPATH,number,joDesPwd,[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid]];
         
     }else{
         urlString = [NSString stringWithFormat:@"%@/user/apilogin?token=%@&appkey=%@&banid=%@",LY_URLPATH,[LYouUserDefauleManager getToken],[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid]];
-        
     }
-    
     
     [self baseRequrestWithURL:urlString WithSuccess:success WithFailure:failure];
     
@@ -73,15 +72,18 @@
 
 #pragma mark -- 注册账号
 -(void)RegisteredAccountWithPhoneNum:(NSString *)num Password:(NSString *)pwd Verification:(NSString *)verification SuccessBlock:(RequestSuccessBlock)success FailureBock:(RequestFailureBlock)failure{
-    
-    NSString *urlString =  [NSString stringWithFormat:@"%@/user/apiregister?username=%@&pass=%@&deviceid=%@&captcha=%@&tourist=2&banid=%@&appkey=%@",LY_URLPATH,num,pwd,[LYouUserDefauleManager getDeviceId],verification,[LYouUserDefauleManager getBanid],[LYouUserDefauleManager getAppkey]];
+    NSString *joDesPwd = [JoDes encode:pwd key:DESKEY];
+
+    NSString *urlString =  [NSString stringWithFormat:@"%@/user/apiregister?username=%@&pass=%@&deviceid=%@&captcha=%@&tourist=2&banid=%@&appkey=%@",LY_URLPATH,num,joDesPwd,[LYouUserDefauleManager getDeviceId],verification,[LYouUserDefauleManager getBanid],[LYouUserDefauleManager getAppkey]];
     
     [self baseRequrestWithURL:urlString WithSuccess:success WithFailure:failure];
 }
 
 #pragma mark --忘记密码（需要验证码的重新设置密码）
 -(void)GetBackPassWordWithPhoneNum:(NSString *)num Password:(NSString *)pwd Verification:(NSString *)verification SuccessBlock:(RequestSuccessBlock)success FailureBock:(RequestFailureBlock)failure{
-    NSString *urlString =  [NSString stringWithFormat:@"%@/user/apiforgetpassword?telphone=%@&newpass=%@&captcha=%@&appkey=%@",LY_URLPATH,num,pwd,verification,[LYouUserDefauleManager getAppkey]];
+    NSString *joDesPwd = [JoDes encode:pwd key:DESKEY];
+
+    NSString *urlString =  [NSString stringWithFormat:@"%@/user/apiforgetpassword?telphone=%@&newpass=%@&captcha=%@&appkey=%@",LY_URLPATH,num,joDesPwd,verification,[LYouUserDefauleManager getAppkey]];
     
     [self baseRequrestWithURL:urlString WithSuccess:success WithFailure:failure];
 }
@@ -98,14 +100,18 @@
         failure(@"您还没有游客账号");
         return;
     }
-    NSString *urlString =  [NSString stringWithFormat:@"%@/user/apibindphone?token=%@&telphone=%@&pass=%@&captcha=%@&appkey=%@",LY_URLPATH,[LYouUserDefauleManager getToken],num,pwd,verification,[LYouUserDefauleManager getAppkey]];
+    NSString *joDesPwd = [JoDes encode:pwd key:DESKEY];
+
+    NSString *urlString =  [NSString stringWithFormat:@"%@/user/apibindphone?token=%@&telphone=%@&pass=%@&captcha=%@&appkey=%@",LY_URLPATH,[LYouUserDefauleManager getToken],num,joDesPwd,verification,[LYouUserDefauleManager getAppkey]];
     
     [self baseRequrestWithURL:urlString WithSuccess:success WithFailure:failure];
 }
 
 #pragma mark -- 修改密码
 -(void)ChagePasswordWithPhone:(NSString *)token Password:(NSString *)pwd SuccessBlock:(RequestSuccessBlock)success FailureBock:(RequestFailureBlock)failure{
-    NSString *urlString = [NSString stringWithFormat:@"%@/user/apieditpassword?token=%@&newpass=%@&appkey=%@",LY_URLPATH,token,pwd,[LYouUserDefauleManager getAppkey]];
+    NSString *joDesPwd = [JoDes encode:pwd key:DESKEY];
+
+    NSString *urlString = [NSString stringWithFormat:@"%@/user/apieditpassword?token=%@&newpass=%@&appkey=%@",LY_URLPATH,token,joDesPwd,[LYouUserDefauleManager getAppkey]];
     
     [self baseRequrestWithURL:urlString WithSuccess:success WithFailure:failure];
 }

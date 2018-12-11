@@ -11,7 +11,10 @@
 @interface LY_OtherPayViewController : UIViewController
 typedef void(^LY_AppleResultBlock)(int code,NSString *reason);
 
-@property (nonatomic,copy) NSString *name;
+@property (nonatomic,copy) NSString *proId;
+@property (nonatomic,copy) NSString *serverId;
+@property (nonatomic,copy) NSString *roleid;
+@property (nonatomic,copy) NSString *custom;
 @property (nonatomic,copy) NSString *money;
 @property (nonatomic,copy) NSString *orderId;
 

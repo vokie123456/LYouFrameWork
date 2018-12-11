@@ -45,8 +45,8 @@
 
 -(void)loginClick:(UIButton *)sender
 {
-    [[LYouManager sharedManager] LY_ShowLoginView:^(int code, NSString *uid, NSString *token) {
-        NSLog(@"=====%d====%@======%@",code,uid,token);
+    [[LYouManager sharedManager] LY_ShowLoginView:^(int style,NSString *token) {
+        NSLog(@"=====%d====%@",style,token);
     }];
 }
 
@@ -65,7 +65,7 @@
 
 -(void)payButtonClick:(UIButton *)sender
 {
-    [[LYouManager sharedManager] LY_PayProductName:@"001" Money:@"0.01" ProductID:@"lyouPro" OrderID:[self generateTradeNO] Result:^(int code, NSString *reason) {
+    [[LYouManager sharedManager]LY_PayProductId:@"001" ServerId:@"111" Roleid:@"222" Money:@"0.01" OrderID:@"orderNo123333" Custom:@"custom" Result:^(int code, NSString *reason) {
         
     }];
 }

@@ -82,7 +82,7 @@
             [superView removeFromSuperview];
             [[LYUserCenterManager instance] showFuBiao];
             NSLog(@"登陆成功：%@",dict);
-            self.loginBlock(1,dict[@"uid"],dict[@"token"]);
+            self.loginBlock(1,dict[@"token"]);
         } FailureBock:^(NSString *errorMessage) {
             [SVProgressHUD showErrorWithStatus:errorMessage];
             NSLog(@"登录失败：%@",errorMessage);
@@ -117,7 +117,7 @@
                     [LYouUserDefauleManager setToken:dict[@"data"][@"token"]];
                     [LYouUserDefauleManager setIsTempUser:@"1"];
                     [SVProgressHUD showSuccessWithStatus:@"登录成功"];
-                    self.loginBlock(2,@"",dict[@"data"][@"token"]);
+                    self.loginBlock(2,dict[@"data"][@"token"]);
                 } failureBlock:^(NSString *errorMessage) {
                     [SVProgressHUD showErrorWithStatus:errorMessage];
                 }];
@@ -130,7 +130,7 @@
                     [LYouUserDefauleManager setIsTempUser:@"1"];
                     [superView removeFromSuperview];
                     [[LYUserCenterManager instance] showFuBiao];
-                    self.loginBlock(2,@"",dict[@"data"][@"token"]);
+                    self.loginBlock(2,dict[@"data"][@"token"]);
                 } failureBlock:^(NSString *errorMessage) {
                     [SVProgressHUD showErrorWithStatus:errorMessage];
                 }];
@@ -152,7 +152,7 @@
             [LYouUserDefauleManager setToken:dict[@"data"][@"token"]];
             [LYouUserDefauleManager setIsTempUser:@"1"];
             [SVProgressHUD showSuccessWithStatus:@"登录成功"];
-            self.loginBlock(2,@"",dict[@"data"][@"token"]);
+            self.loginBlock(2,dict[@"data"][@"token"]);
         } failureBlock:^(NSString *errorMessage) {
             [SVProgressHUD showErrorWithStatus:errorMessage];
         }];
@@ -165,7 +165,7 @@
             [LYouUserDefauleManager setIsTempUser:@"1"];
             [self.view removeFromSuperview];
             [[LYUserCenterManager instance] showFuBiao];
-            self.loginBlock(2,@"",dict[@"data"][@"token"]);
+            self.loginBlock(2,dict[@"data"][@"token"]);
         } failureBlock:^(NSString *errorMessage) {
             [SVProgressHUD showErrorWithStatus:errorMessage];
         }];

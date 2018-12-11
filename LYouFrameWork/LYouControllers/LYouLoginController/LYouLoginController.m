@@ -47,7 +47,7 @@
                      [LYouUserDefauleManager setToken:dict[@"data"][@"token"]];
                      [LYouUserDefauleManager setIsTempUser:@"1"];
                      [SVProgressHUD showSuccessWithStatus:@"登录成功"];
-                     self.loginBlock(2,@"",dict[@"data"][@"token"]);
+                     self.loginBlock(2,dict[@"data"][@"token"]);
                  } failureBlock:^(NSString *errorMessage) {
                      [SVProgressHUD showErrorWithStatus:errorMessage];
                  }];
@@ -60,7 +60,7 @@
                      [LYouUserDefauleManager setIsTempUser:@"1"];
                      [superView removeFromSuperview];
                      [[LYUserCenterManager instance] showFuBiao];
-                     self.loginBlock(2,@"",dict[@"data"][@"token"]);
+                     self.loginBlock(2,dict[@"data"][@"token"]);
                  } failureBlock:^(NSString *errorMessage) {
                      [SVProgressHUD showErrorWithStatus:errorMessage];
                  }];

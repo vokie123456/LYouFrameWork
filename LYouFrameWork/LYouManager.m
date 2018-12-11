@@ -47,8 +47,7 @@
             /** 是否打开iOS内购 1为开启 2为关闭 */
             [LYouNetWorkManager instance].onoff = [NSString stringWithFormat:@"%@",dict[@"data"][@"ios_pay"]];
             /** 获取三方支付链接 */
-            [LYouNetWorkManager instance].ccurl = @"https://sdkpaylist.lygames.cc/index.php?m=admin&c=zfh5&a=zf";
-//            [LYouNetWorkManager instance].ccurl = dict[@"data"][@"pay_url"];
+            [LYouNetWorkManager instance].ccurl = dict[@"data"][@"pay_url"];
 
     } FailureBock:^(NSString *errorMessage) {
         [SVProgressHUD showErrorWithStatus:errorMessage];
@@ -67,17 +66,26 @@
     [TTop.view addSubview:loginVC.view];
 }
 
-- (void)LY_PayProductName:(NSString *) name
+- (void)LY_PayProductId:(NSString *) proId
+                 ServerId:(NSString *) server_id
+                   Roleid:(NSString *) roleid
                     Money:(NSString *) money
-                ProductID:(NSString *) productId
                   OrderID:(NSString *) orderId
+                   Custom:(NSString *)custom
                    Result:(ApplePayResultBlock) result{
+    if ([LYouUserDefauleManager getToken].length==0) {
+        [SVProgressHUD showInfoWithStatus:@"请先登录游戏"];
+        return;
+    }
     if ([[LYouNetWorkManager instance].onoff isEqualToString:@"2"]) {
         /** 第三方支付 */
         LY_OtherPayViewController *otherPayVC = [LY_OtherPayViewController shared];
-        otherPayVC.name = [NSString stringWithFormat:@"%@",name];
+        otherPayVC.proId = [NSString stringWithFormat:@"%@",proId];
+        otherPayVC.serverId = server_id;
+        otherPayVC.roleid = roleid;
         otherPayVC.money = money;
         otherPayVC.orderId = orderId;
+        otherPayVC.custom = custom;
         otherPayVC.ly_AppleResultBlock = result;
         UIViewController *TTop = [LYouTopViewManager topViewController];
         otherPayVC.view.frame = CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height);
@@ -87,16 +95,12 @@
         [LYouAppPayController shared].money = money;
         [LYouAppPayController shared].LYAppPayResultBlock = result;
         [LYouAppPayController shared].orderId = orderId;
-        [[LYouAppPayController shared] buy:productId];
+        [[LYouAppPayController shared] buy:proId];
         [LYouUserDefauleManager setLastInPayId:orderId];
         [LYouUserDefauleManager setLastInPayMoney:money];
     }
 }
 
-#pragma mark - 加在处理退出当前登录的地方
--(void)LY_handleGameQuitWith:(LY_QuitBlock) LY_QuitBlock{
-    
-}
 
 -(void)LY_Loginout:(LY_QuitBlock) ly_QuitBlock{
     /** 如果是游客 */

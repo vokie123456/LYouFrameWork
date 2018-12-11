@@ -65,7 +65,7 @@
         [SVProgressHUD dismiss];
         [SVProgressHUD showInfoWithStatus:@"无法获取产品信息，购买失败"];
         if (self.LYAppPayResultBlock) {
-            self.LYAppPayResultBlock(2, @"支付失败");
+            self.LYAppPayResultBlock(0, @"支付失败");
         }
         NSLog(@"无法获取产品信息，购买失败");
     }
@@ -74,7 +74,7 @@
 #pragma mark - 查询不存在或网络通信失败等一系列查询失败
 -(void)request:(SKRequest *)request didFailWithError:(NSError *)error{
     if (self.LYAppPayResultBlock) {
-        self.LYAppPayResultBlock(2, @"支付失败");
+        self.LYAppPayResultBlock(0, @"支付失败");
     }
     NSLog(@"查询失败：%@",[error localizedDescription]);
 }
@@ -122,7 +122,7 @@
     if ([user length] <= 1) {
         [SVProgressHUD showErrorWithStatus:@"请重新登录"];
         if (self.LYAppPayResultBlock) {
-            self.LYAppPayResultBlock(2, @"支付失败");
+            self.LYAppPayResultBlock(0, @"支付失败");
         }
         return;
     }
