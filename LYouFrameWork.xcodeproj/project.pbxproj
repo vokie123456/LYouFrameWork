@@ -27,8 +27,6 @@
 		216BE6C121AE6110007D3BD5 /* SVProgressAnimatedView.h in Headers */ = {isa = PBXBuildFile; fileRef = 216BE6B821AE6110007D3BD5 /* SVProgressAnimatedView.h */; };
 		216BE6C521AE6327007D3BD5 /* LYouAppPayController.h in Headers */ = {isa = PBXBuildFile; fileRef = 216BE6C321AE6327007D3BD5 /* LYouAppPayController.h */; };
 		216BE6C621AE6327007D3BD5 /* LYouAppPayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 216BE6C421AE6327007D3BD5 /* LYouAppPayController.m */; };
-		217E777A21B4C73400B7930A /* LYouOtherPayController.h in Headers */ = {isa = PBXBuildFile; fileRef = 217E777821B4C73400B7930A /* LYouOtherPayController.h */; };
-		217E777B21B4C73400B7930A /* LYouOtherPayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 217E777921B4C73400B7930A /* LYouOtherPayController.m */; };
 		217E777E21B4CB0100B7930A /* LYouNetWorkManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 217E777C21B4CB0100B7930A /* LYouNetWorkManager.h */; };
 		217E777F21B4CB0100B7930A /* LYouNetWorkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 217E777D21B4CB0100B7930A /* LYouNetWorkManager.m */; };
 		217E778F21B50AC700B7930A /* LYUserCenterManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 217E778D21B50AC700B7930A /* LYUserCenterManager.h */; };
@@ -149,8 +147,6 @@
 		216BE6B821AE6110007D3BD5 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressAnimatedView.h; sourceTree = "<group>"; };
 		216BE6C321AE6327007D3BD5 /* LYouAppPayController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYouAppPayController.h; sourceTree = "<group>"; };
 		216BE6C421AE6327007D3BD5 /* LYouAppPayController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYouAppPayController.m; sourceTree = "<group>"; };
-		217E777821B4C73400B7930A /* LYouOtherPayController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYouOtherPayController.h; sourceTree = "<group>"; };
-		217E777921B4C73400B7930A /* LYouOtherPayController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYouOtherPayController.m; sourceTree = "<group>"; };
 		217E777C21B4CB0100B7930A /* LYouNetWorkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYouNetWorkManager.h; sourceTree = "<group>"; };
 		217E777D21B4CB0100B7930A /* LYouNetWorkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYouNetWorkManager.m; sourceTree = "<group>"; };
 		217E778D21B50AC700B7930A /* LYUserCenterManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYUserCenterManager.h; sourceTree = "<group>"; };
@@ -285,8 +281,6 @@
 			children = (
 				216BE6C321AE6327007D3BD5 /* LYouAppPayController.h */,
 				216BE6C421AE6327007D3BD5 /* LYouAppPayController.m */,
-				217E777821B4C73400B7930A /* LYouOtherPayController.h */,
-				217E777921B4C73400B7930A /* LYouOtherPayController.m */,
 				21298AE121B688C3002A7198 /* LY_OtherPayViewController.h */,
 				21298ADF21B688C3002A7198 /* LY_OtherPayViewController.m */,
 				21298AE021B688C3002A7198 /* LY_OtherPayViewController.xib */,
@@ -604,7 +598,6 @@
 				21298AE421B688C3002A7198 /* LY_OtherPayViewController.h in Headers */,
 				21F1BCB021AF895B008CAFA5 /* IQUIScrollView+Additions.h in Headers */,
 				216BE6BA21AE6110007D3BD5 /* SVIndefiniteAnimatedView.h in Headers */,
-				217E777A21B4C73400B7930A /* LYouOtherPayController.h in Headers */,
 				21F1695621AD2C4800C69519 /* LYouLoginController.h in Headers */,
 				21F168F921AD200200C69519 /* UITableView+SDAutoTableViewCellHeight.h in Headers */,
 				21F1BCA021AF895B008CAFA5 /* IQBarButtonItem.h in Headers */,
@@ -765,7 +758,6 @@
 				21F1BCCD21AFCE3D008CAFA5 /* LYRegistView.m in Sources */,
 				21F1BC6721AF81C2008CAFA5 /* LYouAcountLoginController.m in Sources */,
 				21F1BCAC21AF895B008CAFA5 /* IQUIScrollView+Additions.m in Sources */,
-				217E777B21B4C73400B7930A /* LYouOtherPayController.m in Sources */,
 				2129740921B5248D00246DCF /* LY_BindPhoneController.m in Sources */,
 				216BE6B921AE6110007D3BD5 /* SVRadialGradientLayer.m in Sources */,
 				217E779021B50AC700B7930A /* LYUserCenterManager.m in Sources */,

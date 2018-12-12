@@ -140,21 +140,14 @@
 {
     NSString* reqUrl = request.URL.absoluteString;
     
-    if (self.string1) {
-        if ([reqUrl hasPrefix:self.string1]) {
-            BOOL bSucc = [[UIApplication sharedApplication]openURL:request.URL];
-        }
+    if ([reqUrl hasPrefix:@"weixin://"]) {
+        /** 微信支付 */
+        BOOL bSucc = [[UIApplication sharedApplication]openURL:request.URL];
     }
-    if (self.string2) {
-        if ([reqUrl hasPrefix:self.string2]) {
-            BOOL bSucc = [[UIApplication sharedApplication]openURL:request.URL];
-        }
+    if ([reqUrl hasPrefix:@"https://openapi.alipay.com"]) {
+        BOOL bSucc = [[UIApplication sharedApplication]openURL:request.URL];
     }
-    if (self.string3) {
-        if ([reqUrl hasPrefix:self.string3]) {
-            BOOL bSucc = [[UIApplication sharedApplication]openURL:request.URL];
-        }
-    }
+    
     NSLog(@"--->reqUrl:%@",reqUrl);
     if (reqUrl && [reqUrl containsString:@"iosreturn_url.php"]) {
         [self SHUCH:@"success"];

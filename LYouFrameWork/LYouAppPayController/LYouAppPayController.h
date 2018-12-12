@@ -13,6 +13,10 @@ typedef void(^LY_AppPayResultBlock)(int code,NSString *reason);
 
 @interface LYouAppPayController : NSObject
 
+@property (nonatomic,copy) NSString *proId;
+@property (nonatomic,copy) NSString *serverId;
+@property (nonatomic,copy) NSString *roleid;
+@property (nonatomic,copy) NSString *custom;
 @property (nonatomic,copy) NSString *money;
 @property (nonatomic,copy) NSString *orderId;
 @property (nonatomic, copy) LY_AppPayResultBlock LYAppPayResultBlock;

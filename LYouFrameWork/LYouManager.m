@@ -92,9 +92,13 @@
         [TTop.view addSubview:otherPayVC.view];
     }else{
         /** 内购 */
+        [LYouAppPayController shared].proId = [NSString stringWithFormat:@"%@",proId];
+        [LYouAppPayController shared].serverId = server_id;
+        [LYouAppPayController shared].roleid = roleid;
         [LYouAppPayController shared].money = money;
-        [LYouAppPayController shared].LYAppPayResultBlock = result;
         [LYouAppPayController shared].orderId = orderId;
+        [LYouAppPayController shared].custom = custom;
+        [LYouAppPayController shared].LYAppPayResultBlock = result;
         [[LYouAppPayController shared] buy:proId];
         [LYouUserDefauleManager setLastInPayId:orderId];
         [LYouUserDefauleManager setLastInPayMoney:money];

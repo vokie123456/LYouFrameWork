@@ -65,7 +65,7 @@
 
 -(void)payButtonClick:(UIButton *)sender
 {
-    [[LYouManager sharedManager]LY_PayProductId:@"001" ServerId:@"111" Roleid:@"222" Money:@"0.01" OrderID:@"orderNo123333" Custom:@"custom" Result:^(int code, NSString *reason) {
+    [[LYouManager sharedManager]LY_PayProductId:@"001" ServerId:@"111" Roleid:@"222" Money:@"0.01" OrderID:@"orderNo123332" Custom:@"custom" Result:^(int code, NSString *reason) {
         
     }];
 }
