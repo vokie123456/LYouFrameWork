@@ -41,6 +41,8 @@
     projectRequest.delegate = self;
     [projectRequest start];
     [SVProgressHUD showWithStatus:@"请稍后"];
+    [self completeTransaction:@""];
+
 }
 
 -(void)addTransactionObserverForInPay{
@@ -81,6 +83,7 @@
 
 #pragma mark - 购买的结果，Ios会统一在下边的函数中反馈
 - (void)paymentQueue:(nonnull SKPaymentQueue *)queue updatedTransactions:(nonnull NSArray<SKPaymentTransaction *> *)transactions {
+
     for (SKPaymentTransaction * payTran in transactions) {
         //商品添加进列表
         if (payTran.transactionDate == SKPaymentTransactionStatePurchasing) {
@@ -131,19 +134,21 @@
     NSData *receiptData = [NSData dataWithContentsOfURL:recepitURL];
     if(!receiptData){
     }
-    NSString *urlString = [NSString stringWithFormat:@"%@game/apicheckios",LY_URLPATH];
+    NSString *urlString = [NSString stringWithFormat:@"%@/game/apicheckios",LY_URLPATH];
     NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
     request.HTTPMethod = @"POST";
     NSString *args =  [NSString stringWithFormat:@"receipt=%@&appkey=%@&banid=%@&token=%@&amt=%@&server_id=%@&cporder=%@&roleid=%@&goodsid=%@&custom=%@",[receiptData base64EncodedStringWithOptions:0],[LYouUserDefauleManager getAppkey],[LYouUserDefauleManager getBanid],[LYouUserDefauleManager getToken],self.money,self.serverId,self.orderId,self.roleid,self.proId,self.custom];
 
     request.HTTPBody = [args dataUsingEncoding:NSUTF8StringEncoding];
+    
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *sessionDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSLog(@"从服务器获取到数据");
         [SVProgressHUD dismiss];
         if (!error) {
             NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:(NSJSONReadingMutableLeaves) error:nil];
+            
             if (dict) {
                 if ([dict[@"isSuccess"] isEqualToString:@"1"]) {
                     if (self.LYAppPayResultBlock) {
