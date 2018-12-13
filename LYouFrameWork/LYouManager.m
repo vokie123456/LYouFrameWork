@@ -76,43 +76,43 @@
         [SVProgressHUD showInfoWithStatus:@"请先登录游戏"];
         return;
     }
-//    if ([[LYouNetWorkManager instance].onoff isEqualToString:@"2"]) {
-//        /** 第三方支付 */
-//        LY_OtherPayViewController *otherPayVC = [LY_OtherPayViewController shared];
-//        otherPayVC.proId = [NSString stringWithFormat:@"%@",proId];
-//        otherPayVC.serverId = server_id;
-//        otherPayVC.roleid = roleid;
-//        otherPayVC.money = money;
-//        otherPayVC.orderId = orderId;
-//        otherPayVC.custom = custom;
-//        otherPayVC.ly_AppleResultBlock = result;
-//        UIViewController *TTop = [LYouTopViewManager topViewController];
-//        otherPayVC.view.frame = CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height);
-//        [TTop.view addSubview:otherPayVC.view];
-//    }else{
-//        /** 内购 */
-//        [LYouAppPayController shared].proId = [NSString stringWithFormat:@"%@",proId];
-//        [LYouAppPayController shared].serverId = server_id;
-//        [LYouAppPayController shared].roleid = roleid;
-//        [LYouAppPayController shared].money = money;
-//        [LYouAppPayController shared].orderId = orderId;
-//        [LYouAppPayController shared].custom = custom;
-//        [LYouAppPayController shared].LYAppPayResultBlock = result;
-//        [[LYouAppPayController shared] buy:proId];
-//        [LYouUserDefauleManager setLastInPayId:orderId];
-//        [LYouUserDefauleManager setLastInPayMoney:money];
-//    }
-    /** 内购 */
-    [LYouAppPayController shared].proId = [NSString stringWithFormat:@"%@",proId];
-    [LYouAppPayController shared].serverId = server_id;
-    [LYouAppPayController shared].roleid = roleid;
-    [LYouAppPayController shared].money = money;
-    [LYouAppPayController shared].orderId = orderId;
-    [LYouAppPayController shared].custom = custom;
-    [LYouAppPayController shared].LYAppPayResultBlock = result;
-    [[LYouAppPayController shared] buy:proId];
-    [LYouUserDefauleManager setLastInPayId:orderId];
-    [LYouUserDefauleManager setLastInPayMoney:money];
+    if ([[LYouNetWorkManager instance].onoff isEqualToString:@"2"]) {
+        /** 第三方支付 */
+        LY_OtherPayViewController *otherPayVC = [LY_OtherPayViewController shared];
+        otherPayVC.proId = [NSString stringWithFormat:@"%@",proId];
+        otherPayVC.serverId = server_id;
+        otherPayVC.roleid = roleid;
+        otherPayVC.money = money;
+        otherPayVC.orderId = orderId;
+        otherPayVC.custom = custom;
+        otherPayVC.ly_AppleResultBlock = result;
+        UIViewController *TTop = [LYouTopViewManager topViewController];
+        otherPayVC.view.frame = CGRectMake(0, 0, Main_Screen_Width, Main_Screen_Height);
+        [TTop.view addSubview:otherPayVC.view];
+    }else{
+        /** 内购 */
+        [LYouAppPayController shared].proId = [NSString stringWithFormat:@"%@",proId];
+        [LYouAppPayController shared].serverId = server_id;
+        [LYouAppPayController shared].roleid = roleid;
+        [LYouAppPayController shared].money = money;
+        [LYouAppPayController shared].orderId = orderId;
+        [LYouAppPayController shared].custom = custom;
+        [LYouAppPayController shared].LYAppPayResultBlock = result;
+        [[LYouAppPayController shared] buy:proId];
+        [LYouUserDefauleManager setLastInPayId:orderId];
+        [LYouUserDefauleManager setLastInPayMoney:money];
+    }
+//    /** 内购 */
+//    [LYouAppPayController shared].proId = [NSString stringWithFormat:@"%@",proId];
+//    [LYouAppPayController shared].serverId = server_id;
+//    [LYouAppPayController shared].roleid = roleid;
+//    [LYouAppPayController shared].money = money;
+//    [LYouAppPayController shared].orderId = orderId;
+//    [LYouAppPayController shared].custom = custom;
+//    [LYouAppPayController shared].LYAppPayResultBlock = result;
+//    [[LYouAppPayController shared] buy:proId];
+//    [LYouUserDefauleManager setLastInPayId:orderId];
+//    [LYouUserDefauleManager setLastInPayMoney:money];
 }
 
 
